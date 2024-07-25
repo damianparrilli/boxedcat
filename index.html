@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoxedCat</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-cont">
+            <img src="./img/logo-boxedcat.svg" alt="" class="logo-header">
+            <ul>
+                <a href="">
+                    <li>Inicio</li>
+                </a>
+                <a href="">
+                    <li>Notas</li>
+                </a>
+                <a href="">
+                    <li>Tienda</li>
+                </a>
+            </ul>
+            <div class="right-part">
+                <a href="#" id="search">
+                    <svg width="32" height="32" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="search-img"
+                            d="M73.7778 80L45.7778 52C43.5556 53.7778 41 55.1852 38.1111 56.2222C35.2222 57.2593 32.1482 57.7778 28.8889 57.7778C20.8148 57.7778 13.9822 54.9807 8.39111 49.3867C2.8 43.7926 0.00296531 36.96 2.35156e-06 28.8889C-0.00296061 20.8178 2.79408 13.9852 8.39111 8.39111C13.9882 2.79704 20.8207 0 28.8889 0C36.957 0 43.7911 2.79704 49.3911 8.39111C54.9911 13.9852 57.7867 20.8178 57.7778 28.8889C57.7778 32.1481 57.2593 35.2222 56.2222 38.1111C55.1852 41 53.7778 43.5556 52 45.7778L80 73.7778L73.7778 80ZM28.8889 48.8889C34.4444 48.8889 39.1674 46.9452 43.0578 43.0578C46.9482 39.1704 48.8919 34.4474 48.8889 28.8889C48.8859 23.3304 46.9422 18.6089 43.0578 14.7244C39.1733 10.84 34.4504 8.89482 28.8889 8.88889C23.3274 8.88296 18.6059 10.8281 14.7244 14.7244C10.843 18.6207 8.89778 23.3422 8.88889 28.8889C8.88 34.4356 10.8252 39.1585 14.7244 43.0578C18.6237 46.957 23.3452 48.9007 28.8889 48.8889Z" />
+                    </svg>
+                </a>
+                <a href="#" id="login-btn"><img src="./img/login-logo.svg" alt="" class="login-logo">ACCEDER</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <section class="nota">
+            <div class="nota-escrito">
+                <div class="items">
+                    <span><img src="./img/clock 13.svg" alt="">14 min de lectura</span>
+                    <svg class="bookmark" width="20" height="26" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15 19L8 15L1 19V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H13C13.5304 1 14.0391 1.21071 14.4142 1.58579C14.7893 1.96086 15 2.46957 15 3V19Z"
+                            stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="items">
+                    <span>ENTREVISTA / SALUD</span>
+                    <span>7 / 6 / 2020</span>
+                </div>
+                <div class="titulo-nota">
+                    <h2>Hector Rodriguez: <br> Historia de vida</h2>
+
+                    <div class="views-rate">
+                        <div><img src="./img/view.svg" alt=""></div>
+                        <div><img src="./img/star-rate.svg" alt=""></div>
+                    </div>
+
+                    <span>TXT Esteban Heinz<br>IMG Francisco De Saint</span>
+                </div>
+
+                <div class="contenido-nota">
+                    <h3>SINTESÍS</h3>
+                    <p class="sintesis">Hector Rodriguez nos introduce a un recorrido histórico personal con la
+                        trayectoria de su cargo, nos permite ver un poco más claro el mecanismo de salud pública y
+                        lograr interpretarlo desde el ámbito de la medicina.</p>
+                    <h3>INTRODUCCIÓN</h3>
+                    <p>Aunque nunca lo quiso, por mucho que nunca lo buscó, la vida de Hector Rodriguez siempre
+                        transcurrió por la política. Su abuelo era médico, concejal socialista en Entre Ríos y estuvo al
+                        frente del primer centro de salud del pueblo.
+                        Su padre, abogado, se desempeñó como asesor del nuevo presidente, Raúl Alfonsin, quien reabrió
+                        la democracia en 1983. Pero él no, estaba para otra cosa. Prefiere guardapolvos y estetoscopios
+                        a corbatas y chaquetas. Se sintió atraído por los libros y su trabajo en los hospitales
+                        italianos, donde pasó más de 20 años. <br> <br> Se puede ver que el árbol genealógico está muy
+                        arraigado, y como no tiene mucha trayectoria en la administración pública, llegó a ser jefe de
+                        la secretaría de salud a nivel nacional. Allí, el médico de familia, MD (UBA), becario del
+                        Conicet y profesor visitante de Harvard, vivió los dos años más estresantes de su vida. Apoyó la
+                        Ley de Interrupción Voluntaria del Embarazo e impulsó la expansión de otros derechos, como la
+                        cobertura total de la terapia hormonal. Aunque, claro, también sabía mal. Su ministerio quedó
+                        relegado a secretaría, y sus críticos lo acusaron de recortar drásticamente el presupuesto, lo
+                        que provocó la falta de vacunas en el calendario obligatorio. En esta profunda conversación,
+                        Rodriguez muestra su luz y su sombra: hace un balance de su paso por el Ministerio de Salud,
+                        explica por qué renunció en 2019 y responde si le gustaría quedarse ante la Pandemia de hoy.</p>
+                    <div class="minicontenido">
+                        <a onclick="expandir(event)">
+                            <div>
+                                <p>Tu infancia. <img src="./img/ci_clock.svg" alt=""> 8 min</p>
+                            </div>
+                            <img src="./img/arrow.svg" class="flecha active">
+                        </a>
+                        <div class="contenido-por-expandir" id="expandir1">
+                            <p class="subtitulo-nota">Tu familia vino de Rusia.</p>
+                            <p>Mi familia vino de Rusia alrededor de 1890. Los gauchos viajaron después de huir del
+                                Holocausto (linchamiento) gracias a los subsidios del banquero y filántropo alemán Baron
+                                Hirsch, quien impulsó la colonia judía en América. Compró terrenos en Entre Ríos, y la
+                                familia Rodriguez fue uno de los grupos que llegaron a la Argentina. Debo admitir que
+                                nunca he tenido mucho contacto con la religión o la tradición, pero el año pasado me
+                                invitaron a visitar el lugar donde crecieron mis antepasados. Por ejemplo, he
+                                descubierto que puedo obtener crédito muy barato para comprar maquinaria y herramientas
+                                agrícolas. Mi abuelo, Hector, que murió antes de que yo naciera, se graduó de obstetra
+                                en Buenos Aires y volvió a ser el primer director del hospital del pueblo. Yo me
+                                sorprendí al enterarme de estas cosas porque yo no sabía nada y mi viejo no me lo decía.
+                                Se está moviendo.</p>
+                            <p class="subtitulo-nota">Introducir el vaso de leche en las escuelas.</p>
+                            <p>Mi viejo me dijo que lo enorgullecía. Toda mi familia salió de las entrañas del
+                                socialismo, y mi padre fue un líder hasta que se volvió al alfonsismo en 1983, fue
+                                asesor del presidente. De hecho, él fue el artífice de la corriente socialista radical,
+                                y me tocó a mí, cuando era muy joven, ser el representante de la juventud. Somos diez
+                                gatos locos que están con nosotros como parte de un increíble movimiento a nivel
+                                nacional para volver a la democracia. Por lo que a mí respecta, aparte de esa cosita que
+                                te acabo de decir, nunca he estado involucrado en política ni en militancia. Toda mi
+                                atención, mi atención, está en la medicina y la salud pública.</p>
+                            <p class="subtitulo-nota">Anecdotas de tu viejo y Raúl Alfonsín. </p>
+                            <p>Hay una anécdota que nunca olvidaré. Alfonsín había venido a mi casa en 1982 cuando se
+                                instaló la corriente socialista radical, cuando él y Fernando de la Rúa se presentaban a
+                                las elecciones del partido. Lo conocí y quedé maravillado, un verdadero líder, un tipo
+                                increíble, vino y cortó el aire, mi viejo nos presentó y eso fue todo durante cinco
+                                minutos de cordial conversación. Yo era un niño y estaba muerto de miedo. Unos meses
+                                después, estaba en uno de los pasillos esperando que Alfonsín apareciera en el lobby de
+                                un comité radical con mucha gente. Lo recuerdo claramente deteniéndose donde yo estaba,
+                                deteniéndose un rato y saludando: "¿Cómo está mi doctor?" Casi me muero, tenía el pecho
+                                hinchado; nunca entendí cómo recordaba, siempre ve y visita a tanta gente. Más tarde
+                                pasé por mucho en un hospital italiano, donde obtuve mi título de médico.</p>
+                        </div>
+                    </div>
+                    <div class="minicontenido">
+                        <a onclick="expandir(event)">
+                            <div>
+                                <p>Anecdotas sobre Salud y trabajo <img src="./img/ci_clock.svg" alt=""> 9 min</p>
+                            </div>
+                            <img src="./img/arrow.svg" class="flecha">
+                        </a>
+                        <div class="contenido-por-expandir" id="expandir2">
+                            <p class="subtitulo-nota">Tu familia vino de Rusia.</p>
+                            <p>Mi familia vino de Rusia alrededor de 1890. Los gauchos viajaron después de huir del
+                                Holocausto (linchamiento) gracias a los subsidios del banquero y filántropo alemán Baron
+                                Hirsch, quien impulsó la colonia judía en América. Compró terrenos en Entre Ríos, y la
+                                familia Rodriguez fue uno de los grupos que llegaron a la Argentina. Debo admitir que
+                                nunca he tenido mucho contacto con la religión o la tradición, pero el año pasado me
+                                invitaron a visitar el lugar donde crecieron mis antepasados. Por ejemplo, he
+                                descubierto que puedo obtener crédito muy barato para comprar maquinaria y herramientas
+                                agrícolas. Mi abuelo, Hector, que murió antes de que yo naciera, se graduó de obstetra
+                                en Buenos Aires y volvió a ser el primer director del hospital del pueblo. Yo me
+                                sorprendí al enterarme de estas cosas porque yo no sabía nada y mi viejo no me lo decía.
+                                Se está moviendo.</p>
+                            <p class="subtitulo-nota">Introducir el vaso de leche en las escuelas.</p>
+                            <p>Mi viejo me dijo que lo enorgullecía. Toda mi familia salió de las entrañas del
+                                socialismo, y mi padre fue un líder hasta que se volvió al alfonsismo en 1983, fue
+                                asesor del presidente. De hecho, él fue el artífice de la corriente socialista radical,
+                                y me tocó a mí, cuando era muy joven, ser el representante de la juventud. Somos diez
+                                gatos locos que están con nosotros como parte de un increíble movimiento a nivel
+                                nacional para volver a la democracia. Por lo que a mí respecta, aparte de esa cosita que
+                                te acabo de decir, nunca he estado involucrado en política ni en militancia. Toda mi
+                                atención, mi atención, está en la medicina y la salud pública.</p>
+                            <p class="subtitulo-nota">Anecdotas de tu viejo y Raúl Alfonsín. </p>
+                            <p>Hay una anécdota que nunca olvidaré. Alfonsín había venido a mi casa en 1982 cuando se
+                                instaló la corriente socialista radical, cuando él y Fernando de la Rúa se presentaban a
+                                las elecciones del partido. Lo conocí y quedé maravillado, un verdadero líder, un tipo
+                                increíble, vino y cortó el aire, mi viejo nos presentó y eso fue todo durante cinco
+                                minutos de cordial conversación. Yo era un niño y estaba muerto de miedo. Unos meses
+                                después, estaba en uno de los pasillos esperando que Alfonsín apareciera en el lobby de
+                                un comité radical con mucha gente. Lo recuerdo claramente deteniéndose donde yo estaba,
+                                deteniéndose un rato y saludando: "¿Cómo está mi doctor?" Casi me muero, tenía el pecho
+                                hinchado; nunca entendí cómo recordaba, siempre ve y visita a tanta gente. Más tarde
+                                pasé por mucho en un hospital italiano, donde obtuve mi título de médico.</p>
+                        </div>
+                    </div>
+                    <div class="minicontenido">
+                        <a onclick="expandir(event)">
+                            <div>
+                                <p>Sobre ser ministro de Salud <img src="./img/ci_clock.svg" alt=""> 5 min</p>
+                            </div>
+                            <img src="./img/arrow.svg" class="flecha">
+                        </a>
+                        <div class="contenido-por-expandir" id="expandir3">
+                            <p class="subtitulo-nota">Tu familia vino de Rusia.</p>
+                            <p>Mi familia vino de Rusia alrededor de 1890. Los gauchos viajaron después de huir del
+                                Holocausto (linchamiento) gracias a los subsidios del banquero y filántropo alemán Baron
+                                Hirsch, quien impulsó la colonia judía en América. Compró terrenos en Entre Ríos, y la
+                                familia Rodriguez fue uno de los grupos que llegaron a la Argentina. Debo admitir que
+                                nunca he tenido mucho contacto con la religión o la tradición, pero el año pasado me
+                                invitaron a visitar el lugar donde crecieron mis antepasados. Por ejemplo, he
+                                descubierto que puedo obtener crédito muy barato para comprar maquinaria y herramientas
+                                agrícolas. Mi abuelo, Hector, que murió antes de que yo naciera, se graduó de obstetra
+                                en Buenos Aires y volvió a ser el primer director del hospital del pueblo. Yo me
+                                sorprendí al enterarme de estas cosas porque yo no sabía nada y mi viejo no me lo decía.
+                                Se está moviendo.</p>
+                            <p class="subtitulo-nota">Introducir el vaso de leche en las escuelas.</p>
+                            <p>Mi viejo me dijo que lo enorgullecía. Toda mi familia salió de las entrañas del
+                                socialismo, y mi padre fue un líder hasta que se volvió al alfonsismo en 1983, fue
+                                asesor del presidente. De hecho, él fue el artífice de la corriente socialista radical,
+                                y me tocó a mí, cuando era muy joven, ser el representante de la juventud. Somos diez
+                                gatos locos que están con nosotros como parte de un increíble movimiento a nivel
+                                nacional para volver a la democracia. Por lo que a mí respecta, aparte de esa cosita que
+                                te acabo de decir, nunca he estado involucrado en política ni en militancia. Toda mi
+                                atención, mi atención, está en la medicina y la salud pública.</p>
+                            <p class="subtitulo-nota">Anecdotas de tu viejo y Raúl Alfonsín. </p>
+                            <p>Hay una anécdota que nunca olvidaré. Alfonsín había venido a mi casa en 1982 cuando se
+                                instaló la corriente socialista radical, cuando él y Fernando de la Rúa se presentaban a
+                                las elecciones del partido. Lo conocí y quedé maravillado, un verdadero líder, un tipo
+                                increíble, vino y cortó el aire, mi viejo nos presentó y eso fue todo durante cinco
+                                minutos de cordial conversación. Yo era un niño y estaba muerto de miedo. Unos meses
+                                después, estaba en uno de los pasillos esperando que Alfonsín apareciera en el lobby de
+                                un comité radical con mucha gente. Lo recuerdo claramente deteniéndose donde yo estaba,
+                                deteniéndose un rato y saludando: "¿Cómo está mi doctor?" Casi me muero, tenía el pecho
+                                hinchado; nunca entendí cómo recordaba, siempre ve y visita a tanta gente. Más tarde
+                                pasé por mucho en un hospital italiano, donde obtuve mi título de médico.</p>
+                        </div>
+                    </div>
+                    <div class="nota-inactiva"></div>
+                </div>
+                <a class="ver-mas" onclick="expandirTotal()">
+                    <img src="./img/ver-mas.svg" alt="" id="ver-mas-img">
+                    <span id="ver-mas-text">Ver más</span>
+                </a>
+            </div>
+        </section>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
