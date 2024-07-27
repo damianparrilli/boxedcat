@@ -545,3 +545,112 @@ font-weight: 600;
     
     fill: #2CA9F0;
 } */
+
+.comentarios{
+    padding: 100px 0;
+}
+
+.header-comentarios{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cantidad-comentarios{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cantidad-comentarios span{
+    font-size: 36px;
+}
+
+.cantidad-comentarios > :first-child{
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    line-height: 50px;
+    text-align: center;
+    min-width: 70px;
+    min-height: 70px;
+    padding: 10px;
+}
+
+
+.ordenar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.ordenar h3{
+    font-weight: 500;
+    font-size: 1.1;
+}
+
+.ordenar select{
+    appearance: none;
+    font-size: 1.4rem;
+    border: none;
+    padding: 5px 45px 5px 5px;
+    color: var(--accent-color);
+    background-image: url("../img/arrow-dropdown.svg");
+    background-position: center right 10px;
+    background-repeat: no-repeat;
+}
+
+.ordenar select:focus{
+    border: none;
+    outline: none;
+}
+
+.escribir-comentario{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin: 80px 0;
+    position: relative;
+}
+
+.escribir-comentario textarea{
+    width: auto;
+    border: 1px solid black;
+    height: 175px;
+    font-size: 1rem;
+    /* outline: none; */
+    resize: none;
+    padding: 35px 100px;
+    border-radius: 40px;
+    margin: 0 70px;
+}
+
+.escribir-comentario button{
+    margin: 0 70px 0 auto;
+    cursor: pointer;
+    border: none;
+    padding: 10px 45px;
+    font-size: 1.2rem;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 15px;
+}
+
+.escribir-comentario img{
+    background-color: #0D1823;
+   position: absolute;
+   object-fit: contain;
+   padding: 10px;
+   top: -25px;
+    left: 45px;
+   width: 70px;
+   height: 70px;
+   border-radius: 50%;
+   pointer-events: none;
+}
+
