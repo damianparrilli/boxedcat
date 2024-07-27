@@ -11,7 +11,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
-    
+    background-repeat: no-repeat;
 }
 
 body{
@@ -595,6 +595,7 @@ font-weight: 600;
 
 .ordenar select{
     appearance: none;
+    background-color: transparent;
     font-size: 1.4rem;
     border: none;
     padding: 5px 45px 5px 5px;
@@ -627,11 +628,11 @@ font-weight: 600;
     resize: none;
     padding: 35px 100px;
     border-radius: 40px;
-    margin: 0 70px;
+    margin: 0;
 }
 
 .escribir-comentario button{
-    margin: 0 70px 0 auto;
+    margin: 0 0 0 auto;
     cursor: pointer;
     border: none;
     padding: 10px 45px;
@@ -646,11 +647,98 @@ font-weight: 600;
    position: absolute;
    object-fit: contain;
    padding: 10px;
-   top: -25px;
-    left: 45px;
+   top: -30px;
+    left: -30px;
    width: 70px;
    height: 70px;
    border-radius: 50%;
    pointer-events: none;
 }
 
+.row-comentarios{
+    margin: 0 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comentarios-escritos{
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    margin: 25px 0;
+}
+
+.comentario-individual{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 100px;
+    background-color: #F5F5F5;
+    border-radius: 40px;
+    gap: 35px;
+}
+
+.comentario-individual > :nth-child(2){
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.comentario-individual h3{
+    font-size: 24px;
+    font-family: "Gothic A1", sans-serif;
+}
+
+.comentario-individual p{
+    font-family: "PT Sans Caption", sans-serif;
+    font-size: 14px;
+}
+
+.comentario-individual img{
+    background-color: #0D1823;
+   position: absolute;
+   object-fit: contain;
+   padding: 10px;
+   top: -30px;
+    left: -30px;
+   width: 70px;
+   height: 70px;
+   border-radius: 50%;
+   pointer-events: none;
+}
+
+#mostrar-mas{
+    margin: 25px 0;
+    color: white;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 40px;
+    font-family: "Gothic A1", sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 15px 0;
+    position: relative;
+    
+    
+}
+
+#mostrar-mas::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/arrow-mostrarmas.svg");
+    background-position: center right 35px;
+    background-repeat: no-repeat;
+    transform: rotate(0deg);
+    z-index: 1; /* Asegura que el pseudo-elemento esté debajo del contenido */
+}
+
+#mostrar-mas:hover{
+    background-color:#d45140;
+    
+}

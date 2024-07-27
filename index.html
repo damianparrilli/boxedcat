@@ -313,7 +313,7 @@
             <div class="row">
                 <div class="header-comentarios">
                     <div class="cantidad-comentarios">
-                        <span>3</span>
+                        <span id="cantidad-comentarios">3</span>
                         <span>COMENTARIOS</span>
                     </div>
                     <div class="ordenar">
@@ -324,17 +324,48 @@
                         </select>
                     </div>
                 </div>
-                <form class="escribir-comentario">
-                    <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo">
-                    <textarea name="comentario" id="comentario" placeholder="¿Qué te pareció la nota?"
-                        maxlength="400"></textarea>
-                    <button>Enviar</button>
+                <div class="row-comentarios">
+                    <form class="escribir-comentario" id="formComentario">
+                        <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo">
+                        <textarea name="comentario" id="comentario" placeholder="¿Qué te pareció la nota?"
+                            maxlength="400"></textarea>
+                        <button>Enviar</button>
 
-                </form>
-                <!-- <div class="comentarios-escritos">
+                    </form>
+                    <div class="comentarios-escritos">
+                        <div class="comentario-individual">
+                            <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo">
+                            <div>
+                                <h3>Lucas</h3>
+                                <p>11/06/24 14:52</p>
+                            </div>
+                            <p>Interesante nota. Pudimos ver un poco del costado politico q tan poco se visualizo. se
+                                nota es muy buen profesional y hubiese estado bueno que siga con la politica....</p>
 
+                        </div>
+                        <div class="comentario-individual">
+                            <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo">
+                            <div>
+                                <h3>Lucas</h3>
+                                <p>05/07/24 15:32</p>
+                            </div>
+                            <p>Interesante nota. Pudimos ver un poco del costado politico q tan poco se visualizo. se
+                                nota es muy buen profesional y hubiese estado bueno que siga con la politica....</p>
+
+                        </div>
+                        <div class="comentario-individual">
+                            <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo">
+                            <div>
+                                <h3>Lucas</h3>
+                                <p>20/02/19 09:04</p>
+                            </div>
+                            <p>Interesante nota. Pudimos ver un poco del costado politico q tan poco se visualizo. se
+                                nota es muy buen profesional y hubiese estado bueno que siga con la politica....</p>
+
+                        </div>
+                    </div>
+                    <button id="mostrar-mas" onclick="mostrarMas()">Mostrar más</button>
                 </div>
-                <button></button> -->
             </div>
         </section>
     </div>
