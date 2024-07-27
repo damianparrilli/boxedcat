@@ -123,10 +123,14 @@ header ul a:hover{
     position: relative;
     z-index: 1;
     border-radius: 50px;
-    padding: 50px 100px 50px 150px;
+    padding: 50px 100px;
     margin: 0 clamp(0.938rem, -10.446rem + 24.286vw, 6.25rem);
     background-color: #FCF9F9;
     box-shadow: 15px 15px 5px rgba(0, 0, 0, 0.062);
+}
+
+.margen{
+    margin: 0 50px;
 }
 
 .nota-escrito h2{
@@ -547,8 +551,13 @@ font-weight: 600;
 } */
 
 .comentarios{
-    padding: 100px 0;
+    padding: 100px 25px;
 }
+
+.comentarios .row{
+    width: 100%;
+    margin: 0;
+ }
 
 .header-comentarios{
     display: flex;
@@ -656,7 +665,7 @@ font-weight: 600;
 }
 
 .row-comentarios{
-    margin: 0 70px;
+    margin: 0 calc(clamp(0.938rem, -10.446rem + 24.286vw, 6.25rem) + 50px);
     display: flex;
     flex-direction: column;
 }
@@ -742,3 +751,147 @@ font-weight: 600;
     background-color:#d45140;
     
 }
+
+.notas-similares{
+    height: 730px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.notas-similares::before{
+   
+    background: linear-gradient(to bottom, #14273C, #214F82);
+    content: "";
+    position: absolute;
+    width: 100vw; 
+    height: 730px;
+    z-index: -1;
+    margin: auto;
+}
+
+.notas-similares .row{
+   width: 100%;
+   margin: 0;
+}
+
+.notas-similares .row h2{
+    margin: 75px 0;
+    max-width: fit-content;
+    font-family: "Gothic A1", sans-serif;
+    color: white;
+    font-weight: 500;
+    padding: 15px 15px 15px 50px;
+    box-shadow: 10px 15px 0px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--secondary-color);
+}
+
+.cards{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+    margin: 0 15px;
+}
+
+.card-individual{
+    background-color: #F4F4F4;
+    border-radius: 30px;
+    overflow: hidden;
+    width: 280px;
+    border: none;
+    position: relative;
+    cursor: pointer;
+}
+
+.card-individual:hover{
+    filter: brightness(95%);
+    transition: .3s;
+}
+
+
+.card-individual a .bookmark{
+    fill: none;
+    stroke: white;
+    cursor: pointer;
+}
+
+.card-individual a .bookmark:hover{
+    fill: gray;
+    cursor: pointer;
+}
+
+.card-individual a .bookmark.active{
+    fill: rgb(58, 58, 58);
+}
+
+
+.card-individual img{
+    object-fit: cover;
+    width: 100%;
+    height: 210px;
+}
+
+.card-individual::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 210px;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+.card-individual > :nth-child(2){
+    position: absolute;
+    width: 100%;
+    top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1;
+}
+
+.card-individual > :nth-child(2) > :first-child {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+}
+
+.card-individual > :nth-child(2) > :first-child span{
+    font-size: 18px;
+    color: white;
+    z-index: 1;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);;
+}
+
+.card-individual > :nth-child(2) > :first-child img{
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+    height: auto;
+}
+
+.card-individual > :nth-child(3){
+   padding: 15px 25px 40px 25px;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+}
+
+.card-individual > :nth-child(3) span{
+    font-size: 12px;
+    font-family: "PT Sans Caption", sans-serif;
+    color: #4d4d4d;
+ }
+
+ .card-individual > :nth-child(3) h4{
+    font-size: 18px;
+    font-family: "Gothic A1", sans-serif;
+    margin-bottom: 15px;
+ }
+
+ .card-individual > :nth-child(3) p{
+    font-size: 16px;
+    
+ }
