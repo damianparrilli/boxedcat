@@ -34,7 +34,7 @@ width: 36px;
 .header-cont{
     max-width: 1280px;
     margin: auto;
-    padding: 25px;
+    padding: 10px 25px;
     display: flex;
     align-items: center;
     gap: 70px;
@@ -46,7 +46,7 @@ header ul{
     gap: 70px;
     font-weight: 400;
     margin-right: auto;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 header ul a{
@@ -64,6 +64,8 @@ header ul a:hover{
 
 .search-img{
     fill: white;
+    width: 28px;
+    height: 28px;
 }
 
 .right-part{
@@ -77,12 +79,12 @@ header ul a:hover{
     gap: 10px;
     align-items: center;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: white;
 }
 
 #login-btn img{
-    width: 50px;
+    width: 40px;
 }
 
 #login-btn:hover{
@@ -97,7 +99,7 @@ header ul a:hover{
 .nota{
     position: relative;
     padding-top: 275px;
-    margin-top: 100px;
+    margin-top: 70px;
     padding-bottom: 80px;
 }
 
@@ -343,6 +345,10 @@ font-weight: 600;
     cursor: pointer;
 }
 
+.redes-lateral img:hover{
+    filter: brightness(90%);
+}
+
 .redes-y-guardar{
     display: flex;
     justify-content: center;
@@ -355,6 +361,10 @@ font-weight: 600;
     width: 42px;
     height: 42px;
     cursor: pointer;
+}
+
+.redes-y-guardar img:hover{
+    filter: brightness(90%);
 }
 
 .redes-y-guardar a{
@@ -437,8 +447,11 @@ font-weight: 600;
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 100%;
+}
+
+.nota-escrito .row{
     margin: 0 clamp(0.938rem, -10.446rem + 24.286vw, 6.25rem);
-    
 }
 
 .autor{
@@ -448,6 +461,7 @@ font-weight: 600;
     padding: 50px;
     gap: 20px;
     position: relative;
+    margin: 0 clamp(0.938rem, -10.446rem + 24.286vw, 6.25rem);
 }
 
 .autor::before{
@@ -489,7 +503,7 @@ font-weight: 600;
 .valoracion{
     display: flex;
     justify-content: center;
-    
+    margin: 0 clamp(0.938rem, -10.446rem + 24.286vw, 6.25rem);
     align-items: center;
     padding: 100px 50px;
     gap: 20px;
@@ -554,16 +568,6 @@ font-weight: 600;
     padding: 100px 25px;
 }
 
-.comentarios .row{
-    width: 100%;
-    margin: 0;
- }
-
-.header-comentarios{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .cantidad-comentarios{
     display: flex;
@@ -590,34 +594,6 @@ font-weight: 600;
 }
 
 
-.ordenar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
-}
-
-.ordenar h3{
-    font-weight: 500;
-    font-size: 1.1;
-}
-
-.ordenar select{
-    appearance: none;
-    background-color: transparent;
-    font-size: 1.4rem;
-    border: none;
-    padding: 5px 45px 5px 5px;
-    color: var(--accent-color);
-    background-image: url("../img/arrow-dropdown.svg");
-    background-position: center right 10px;
-    background-repeat: no-repeat;
-}
-
-.ordenar select:focus{
-    border: none;
-    outline: none;
-}
 
 .escribir-comentario{
     display: flex;
@@ -770,10 +746,6 @@ font-weight: 600;
     margin: auto;
 }
 
-.notas-similares .row{
-   width: 100%;
-   margin: 0;
-}
 
 .notas-similares .row h2{
     margin: 75px 0;
@@ -895,3 +867,133 @@ font-weight: 600;
     font-size: 16px;
     
  }
+
+ .donar{
+    
+    display: flex;
+    justify-content: center;
+    height: 496px;
+    position: relative;
+    
+ }
+
+ .donar::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    background-image:  url("../img/donar-background.png"), linear-gradient(to right, white 50%, #00223B 50%);
+    width: 100vw;
+    height: 100%;
+    background-size: auto 496px;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+ }
+
+
+ .donar-escrito{
+    width: 55%;
+    /* background: linear-gradient(to right, 
+    rgba(0, 0, 0, 0) 0%, 
+    rgba(0, 0, 0, 0.5) 5%, 
+    rgba(0, 0, 0, 0.5) 95%, 
+    rgba(0, 0, 0, 0) 100%); */
+    background-color: rgb(0, 0, 0, 0.65);
+    height: 100%;
+    padding: 50px 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 35px;
+ }
+
+ .donar-escrito span{
+    color: white;
+    font-size: 3rem;
+    font-family: "Gothic A1", sans-serif;
+ }
+
+ .donar-escrito button{
+    color: white;
+    font-size: 36px;
+    font-family: "Gothic A1", sans-serif;
+    background-color: transparent;
+    border: 4px solid white;
+    border-radius: 50px;
+    padding: 5px 35px;
+    font-weight: 600;
+    cursor: pointer;
+ }
+
+ .donar-escrito button:hover{
+    background-color: #6666664f;
+ }
+
+ footer{
+    background-color: var(--button-color);
+ }
+
+ .footcontainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    max-width: 1280px;
+    margin: auto;
+    padding: 100px 50px 75px 50px;
+    gap: 50px;
+    width: 100%;
+ }
+
+.footcontainer > :first-child{
+display: flex;
+gap: 30px;
+width: 100%;
+align-items: center;
+margin-right: 50px;
+}
+
+ .footcontainer > :first-child img{
+   height: 180px;
+ }
+
+ .footcontainer > :first-child p{
+    font-weight: 300;
+    font-size: 24px;
+    font-family: "PT Sans Caption", sans-serif;
+    color: white;
+    width: 160px;
+    
+    }
+
+    .footcontainer ul{
+        width: 60%;
+        margin: 0 auto;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .footcontainer ul a{
+        text-decoration: none;
+        color: white;
+        font-size: 1.1rem;
+    }
+
+    .footcontainer ul a:hover{
+        color: var(--accent-color);
+    }
+
+    footer > :last-child{
+    max-width: 1280px;
+    margin: auto;
+    color: rgb(245, 245, 245);
+    font-weight: 400;
+    font-family: "Gothic A1", sans-serif;
+   
+    padding: 0 25px 25px 25px;
+    display: flex;
+    justify-content: flex-end;
+    }
