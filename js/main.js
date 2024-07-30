@@ -1,3 +1,119 @@
+let nombreUsuario = "";
+const bookmarkNota = document.querySelectorAll('.bookmark-nota');
+const divLogin = document.getElementById("login-popup");
+
+
+
+
+function manejadorLogin(funcion) {
+    return function (event) {
+        event.preventDefault();
+        if (nombreUsuario == "") {
+            mostrarFormularioLogin(event);
+        } else {
+            if (funcion != null) {
+                funcion(event);
+            }
+        }
+    };
+}
+
+function mostrarFormularioLogin(event) {
+
+    
+   
+    const overlay = document.createElement("div");
+    overlay.className = "overlay";
+    const contenedor = document.createElement("div");
+    contenedor.className = "login-container";
+    contenedor.id = "login-container";
+    const logo = document.createElement("img");
+    logo.src = "./img/logo-boxedcat.svg";
+    logo.className = "logo-login";
+    const titulo = document.createElement("h3");
+    const formLogin = document.createElement("form");
+    formLogin.className = "formulario-login";
+    const usuario = document.createElement("input");
+    usuario.type = "text";
+    usuario.name = "usuario";
+    usuario.id = "usuario";
+    usuario.placeholder = "Usuario";
+    usuario.required = true;
+    const contraseña = document.createElement("input");
+    contraseña.type = "password";
+    contraseña.name = "contraseña";
+    contraseña.id = "contraseña";
+    contraseña.required = true;
+    contraseña.placeholder = "Contraseña";
+    const olvidasteContraseña = document.createElement("a");
+    olvidasteContraseña.textContent = "¿Olvidaste tu contraseña?";
+    const loginBtn = document.createElement("button");
+    loginBtn.textContent = "INICIAR SESIÓN";
+    const textoEnMedio = document.createElement("p");
+    textoEnMedio.textContent = "o";
+    const contenedorButtons = document.createElement("div");
+    contenedorButtons.className = "contenedor-btn-login";
+    const googleLogin = document.createElement("button");
+    googleLogin.textContent = "GOOGLE";
+    const fbLogin = document.createElement("button");
+    fbLogin.textContent = "FACEBOOK";
+    const registrate = document.createElement("p");
+    registrate.textContent = "¿No tenés cuenta? ";
+    const registrateAnchor = document.createElement("a");
+    registrateAnchor.textContent = "Registrate";
+    registrateAnchor.setAttribute("onclick", "abrirFormRegistro()")
+    registrateAnchor.id = "abrirRegistro";
+    const cerrar = document.createElement("a");
+    cerrar.setAttribute("onclick", "cerrarForm()");
+    cerrar.id = "cerrar-form";
+    const cerrarimg = document.createElement("img");
+    cerrarimg.src = "./img/close.svg";
+    
+    if (event.currentTarget.id == "login-btn") {
+        titulo.textContent = "Inicia sesión en BoxedCat";
+        formLogin.append(usuario, contraseña, olvidasteContraseña);
+    } else {
+        titulo.textContent = "Para continuar debes iniciar sesión";
+    }
+    cerrar.append(cerrarimg);
+    registrate.appendChild(registrateAnchor);
+    contenedorButtons.append(googleLogin, fbLogin);
+    formLogin.append(loginBtn);
+    contenedor.append(logo, titulo, formLogin, textoEnMedio, contenedorButtons, cerrar, registrate);
+    overlay.append(contenedor);
+    divLogin.append(overlay);
+    adjustScale();
+}
+
+function abrirFormRegistro() {
+
+};
+
+
+
+function cerrarForm() {
+    divLogin.firstChild.remove();
+}
+
+function cambiarBookmarkNota() {
+    bookmarkNota.forEach(bookmark => {
+        const child = bookmark.firstElementChild;
+        if (child) {
+            child.classList.toggle('active');
+        }
+    });
+}
+
+bookmarkNota.forEach(bookmark => {
+    bookmark.addEventListener('click', manejadorLogin(cambiarBookmarkNota));
+});
+
+function guardarNotasSimilares(event) {
+    event.preventDefault();
+    const anchor = event.currentTarget;
+    anchor.firstElementChild.classList.toggle('active');
+}
+
 function expandir(event) {
     event.preventDefault();
     const anchor = event.currentTarget;
@@ -56,7 +172,7 @@ estrellas.forEach((estrella, index) => {
         }
     });
 
-    estrella.addEventListener("click", () => {
+    function clickearEstrellas() {
         seleccionado = true;
         for (let i = 0; i <= index; i++) {
             estrellas[i].style.fill = "#2CA9F0";
@@ -68,7 +184,9 @@ estrellas.forEach((estrella, index) => {
         }
 
         numTotal.textContent = `${numeroTotal + 1}`;
-    });
+    };
+
+    estrella.addEventListener("click", manejadorLogin(clickearEstrellas));
 
     estrella.addEventListener("mouseout", () => {
         if (!seleccionado) {
@@ -92,15 +210,15 @@ estrellas.forEach((estrella, index) => {
 
 });
 
-let usuario = "Damian";
+
 const formComentario = document.getElementById("formComentario");
 const textarea = document.getElementById("comentario");
 const divComentarios = document.querySelector(".comentarios-escritos");
 let mostrameMas = false;
 let comentarios = document.querySelectorAll(".comentarios-escritos > :not(:first-child)");
 
-formComentario.addEventListener("submit", (e) => {
-    e.preventDefault();
+function enviarComentario(event) {
+    event.preventDefault();
     if (textarea.value !== "") {
         const cantidadComentarios = document.getElementById("cantidad-comentarios");
         let cantTotal = parseInt(cantidadComentarios.textContent);
@@ -120,10 +238,10 @@ formComentario.addEventListener("submit", (e) => {
         const formato = new Intl.DateTimeFormat('es-ES', opcionesDeFecha);
         const partes = formato.formatToParts(fechaActual);
         const fecha = partes.find(p => p.type === 'day').value + '/' +
-                      partes.find(p => p.type === 'month').value + '/' +
-                      partes.find(p => p.type === 'year').value;
+            partes.find(p => p.type === 'month').value + '/' +
+            partes.find(p => p.type === 'year').value;
         const hora = partes.find(p => p.type === 'hour').value + ':' +
-                     partes.find(p => p.type === 'minute').value;
+            partes.find(p => p.type === 'minute').value;
 
         const comentarioIndividual = document.createElement("div");
         comentarioIndividual.classList.add("comentario-individual");
@@ -133,7 +251,7 @@ formComentario.addEventListener("submit", (e) => {
         imagenPerfil.classList.add("profile-photo")
         const nombreYFecha = document.createElement("div");
         const nombre = document.createElement("h3");
-        nombre.textContent = `${usuario}`;
+        nombre.textContent = `${nombreUsuario}`;
         const fechap = document.createElement("p");
         fechap.textContent = `${fecha} ${hora}`;
         const comentarioEscrito = document.createElement("p");
@@ -142,16 +260,16 @@ formComentario.addEventListener("submit", (e) => {
         comentarioIndividual.append(imagenPerfil, nombreYFecha, comentarioEscrito);
         divComentarios.insertBefore(comentarioIndividual, divComentarios.firstChild);
         comentarios = document.querySelectorAll(".comentarios-escritos > :not(:first-child)");
-        if(mostrameMas == false){
+        if (mostrameMas == false) {
             comentarios.forEach(comentario => {
                 comentario.style.display = 'none';
             });
         }
         textarea.value = "";
     }
-});
+};
 
-
+formComentario.addEventListener("submit", manejadorLogin(enviarComentario));
 
 
 
@@ -165,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function mostrarMas() {
 
-    
+
     const btnMostrarMas = document.getElementById("mostrar-mas");
     const styleSheet = document.styleSheets[0];
     const rules = styleSheet.cssRules;
@@ -206,3 +324,19 @@ function mostrarMas() {
     mostrameMas = !mostrameMas;
 }
 
+
+function adjustScale() {
+    var viewportHeight = window.innerHeight;
+    var scaleValue = 1; 
+  
+    if (viewportHeight < 800) {
+      scaleValue = viewportHeight / 800; 
+    }
+    console.log(viewportHeight)
+    var element = document.getElementById('login-container');
+    if (element) {
+      element.style.transform = 'scale(' + scaleValue + ')';
+    }
+  }
+  
+  window.onresize = adjustScale;
