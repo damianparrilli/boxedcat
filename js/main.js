@@ -37,7 +37,7 @@ function mostrarFormularioLogin(event) {
     contenedor.className = "login-container";
     contenedor.id = "login-container";
     const logo = document.createElement("img");
-    logo.src = "./img/logo-boxedcat.svg";
+    logo.src = "./img/logo-boxedcat.webp";
     logo.className = "logo-login";
     const titulo = document.createElement("h3");
     const formLogin = document.createElement("form");
@@ -396,7 +396,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             arregloDeRadio[i].id = `radio${i}`;
             arregloDeRadio[i].name = "avatarSelection";
             arregloDeRadio[i].value = `${i}`;
-            avatar[i] = `./img/avatar${i}.png`;
+            avatar[i] = `./img/avatar${i}.webp`;
             arregloDeLabelRadio[i].style.backgroundImage = `url(.${avatar[i]})`;
             divRadio.append(arregloDeRadio[i], arregloDeLabelRadio[i]);
         }

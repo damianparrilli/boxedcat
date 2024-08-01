@@ -108,7 +108,7 @@ header ul a:hover {
 
 .nota::before {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        url("../img/nota-background.png");
+        url("../img/nota-background.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -544,7 +544,7 @@ header ul a:hover {
     content: "";
     position: absolute;
     background-color: var(--button-color);
-    background-image: url("../img/background-rate.svg");
+    background-image: url("../img/background-rate.webp");
     background-size: auto 330px;
     background-position: right bottom;
     background-repeat: no-repeat;
@@ -891,7 +891,7 @@ header ul a:hover {
     content: "";
     position: absolute;
     top: 0;
-    background-image: url("../img/donar-background.png"), linear-gradient(to right, white 50%, #00223B 50%);
+    background-image: url("../img/donar-background.webp"), linear-gradient(to right, white 50%, #00223B 50%);
     width: 100vw;
     height: 100%;
     background-size: auto 496px;
@@ -1271,27 +1271,27 @@ footer> :last-child {
 
 #label0 {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        url("../img/select1.png");
+        url("../img/select1.webp");
 }
 
 #label1 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select2.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select2.webp");
 }
 
 #label2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select3.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select3.webp");
 }
 
 #label3 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select4.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select4.webp");
 }
 
 #label4 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select5.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select5.webp");
 }
 
 #label5 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select6.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select6.webp");
 }
 
 
@@ -1311,7 +1311,7 @@ footer> :last-child {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background-image: url("../img/checked.png");
+    background-image: url("../img/checked.webp");
     background-repeat: no-repeat;
     background-position: top right;
 }
@@ -1363,7 +1363,7 @@ footer> :last-child {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    background-image: url("../img/checked.png");
+    background-image: url("../img/checked.webp");
     background-repeat: no-repeat;
     background-position: top right;
 }
