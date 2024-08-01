@@ -4,13 +4,56 @@ const bookmarkNota = document.querySelectorAll('.bookmark-nota');
 const divLogin = document.getElementById("login-popup");
 
 
+async function preloadImages(imageUrls) {
+    const container = document.getElementById('preloaded-images');
+
+    const loadImage = url => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = url;
+            img.onload = () => {
+                container.appendChild(img);
+                resolve(img);
+            };
+            img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+        });
+    };
+
+    try {
+        await Promise.all(imageUrls.map(loadImage));
+        console.log("All images preloaded successfully.");
+        document.body.style.visibility = 'visible';
+    } catch (error) {
+        console.error(error);
+        document.body.style.visibility = 'visible';
+    }
+}
+
+const imagesToPreload = [
+    './img/back.svg?v=1',
+    './img/closed-eye.svg?v=1',
+    './img/open-eye.svg?v=1',
+    "./img/logo-boxedcat.webp?v=1",
+    "./img/close.svg?v=1",
+    "./img/avatar0.webp?v=1",
+    "./img/avatar1.webp?v=1",
+    "./img/avatar2.webp?v=1",
+    "./img/avatar3.webp?v=1",
+    "./img/select1.webp?v=1",
+    "./img/select2.webp?v=1",
+    "./img/select3.webp?v=1",
+    "./img/select4.webp?v=1",
+    "./img/select5.webp?v=1",
+    "./img/select6.webp?v=1",
+];
+
+preloadImages(imagesToPreload);
+
 
 const expresiones = {
-    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-    nombres: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    password: /^.{4,12}$/, // 4 a 12 digitos.
-    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    nombres: /^[a-zA-ZÀ-ÿ\s]{1,20}$/,
+    password: /^(?=.*[A-Za-z0-9])[A-Za-z0-9!@#$%^&*()_+]{4,12}$/,
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
 
 
@@ -28,16 +71,13 @@ function manejadorLogin(funcion) {
 }
 
 function mostrarFormularioLogin(event) {
-
-
-
     const overlay = document.createElement("div");
     overlay.className = "overlay";
     const contenedor = document.createElement("div");
     contenedor.className = "login-container";
     contenedor.id = "login-container";
     const logo = document.createElement("img");
-    logo.src = "./img/logo-boxedcat.webp";
+    logo.src = `${imagesToPreload[3]}`;
     logo.className = "logo-login";
     const titulo = document.createElement("h3");
     const formLogin = document.createElement("form");
@@ -56,7 +96,7 @@ function mostrarFormularioLogin(event) {
     contraseña.id = "contraseña";
     contraseña.placeholder = "Contraseña";
     const ojo = document.createElement("img");
-    ojo.src = "./img/closed-eye.svg";
+    ojo.src = `${imagesToPreload[1]}`;
     const textoError = document.createElement("p");
     textoError.className = "texto-error";
     const olvidasteContraseña = document.createElement("a");
@@ -87,9 +127,7 @@ function mostrarFormularioLogin(event) {
     cerrar.setAttribute("onclick", "cerrarForm()");
     cerrar.id = "cerrar-form";
     const cerrarimg = document.createElement("img");
-    cerrarimg.src = "./img/close.svg";
-
-
+    cerrarimg.src = `${imagesToPreload[4]}`;
 
     cerrar.append(cerrarimg);
     registrate.appendChild(registrateAnchor);
@@ -106,9 +144,9 @@ function mostrarFormularioLogin(event) {
         let tipo = contraseña.type === "password" ? "text" : "password";
         contraseña.setAttribute("type", tipo);
         if (tipo == "password") {
-            ojo.src = "./img/closed-eye.svg";
+            ojo.src = `${imagesToPreload[1]}`;
         } else {
-            ojo.src = "./img/open-eye.svg";
+            ojo.src = `${imagesToPreload[2]}`;
         }
     });
 
@@ -139,8 +177,6 @@ function mostrarFormularioLogin(event) {
 
 function abrirFormRegistro(container, imglogo, title, cerra) {
     let presuntoUsuario;
-    let presuntaFoto;
-
     const contenedor = container;
     const logo = imglogo;
     const titulo = title;
@@ -177,7 +213,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
         contraseña.id = "contraseña";
         contraseña.placeholder = "Contraseña";
         const ojo = document.createElement("img");
-        ojo.src = "./img/closed-eye.svg";
+        ojo.src = `${imagesToPreload[1]}`;
         const textoErrorContraseña = document.createElement("p");
         textoErrorContraseña.className = "texto-error";
 
@@ -197,7 +233,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
         registrarseBtn.className = "iniciar-sesion-button";
 
         const back = document.createElement("img");
-        back.src = "./img/back.svg";
+        back.src = `${imagesToPreload[0]}`;
         back.id = "back";
         back.className = "back";
 
@@ -205,10 +241,92 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
         formRegistro1.append(nombre, textoErrorName, email, textoErrorEmail, divContraseña, textoErrorContraseña, confirmarContraseña, textoErrorConfirmarContraseña, terminosYCondiciones, registrarseBtn);
         contenedor.append(logo, titulo, cerrar, back, formRegistro1);
 
+
+
+        const formRegistro2 = document.createElement("form");
+        const arregloDeLabel = [];
+        const arregloDeCheckbox = [];
+        formRegistro2.id = "formulario-registro2";
+        const divCheckbox = document.createElement("div");
+        divCheckbox.className = "div-checkbox";
+        const btnCheckbox = document.createElement("button");
+        btnCheckbox.className = "btn-checkbox";
+        btnCheckbox.textContent = "Elegí 3 más";
+        const back2 = document.createElement("img");
+        back2.src = `${imagesToPreload[0]}`;
+        back2.id = "back2";
+        back2.className = "back";
+        for (let i = 0; i < 6; i++) {
+            arregloDeLabel[i] = document.createElement("label");
+            arregloDeLabel[i].htmlFor = `checkbox${i}`;
+            arregloDeLabel[i].id = `label${i}`;
+            arregloDeLabel[i].style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select${i+1}.webp?v=1")`;
+            arregloDeCheckbox[i] = document.createElement("input");
+            arregloDeCheckbox[i].type = `checkbox`;
+            arregloDeCheckbox[i].id = `checkbox${i}`;
+
+            divCheckbox.append(arregloDeCheckbox[i], arregloDeLabel[i]);
+        }
+
+        arregloDeLabel[0].textContent = `FILOSFIA`;
+        arregloDeLabel[1].textContent = `FISICA`;
+        arregloDeLabel[2].textContent = `LO HUMANO`;
+        arregloDeLabel[3].textContent = `SALUD`;
+        arregloDeLabel[4].textContent = `SOCIEDAD`;
+        arregloDeLabel[5].textContent = `BIOLOGIA`;
+
+
+        const back3 = document.createElement("img");
+        back3.src = `${imagesToPreload[0]}`;
+        back3.id = "back3";
+        back3.className = "back";
+        const formRegistro3 = document.createElement("form");
+        formRegistro3.id = "formulario-registro3";
+        const divRadio = document.createElement("div");
+        divRadio.className = "div-radio";
+        const arregloDeLabelRadio = [];
+        const arregloDeRadio = [];
+        const avatar = [];
+
+        const btnRadio = document.createElement("button");
+        btnRadio.className = "btn-radio";
+        btnRadio.textContent = "Finalizar registro";
+        for (let i = 0; i < 4; i++) {
+            arregloDeLabelRadio[i] = document.createElement("label");
+            arregloDeLabelRadio[i].htmlFor = `radio${i}`;
+            arregloDeLabelRadio[i].id = `labelRadio${i}`;
+            arregloDeRadio[i] = document.createElement("input");
+            arregloDeRadio[i].type = `radio`;
+            arregloDeRadio[i].id = `radio${i}`;
+            arregloDeRadio[i].name = "avatarSelection";
+            arregloDeRadio[i].value = `${i}`;
+            avatar[i] = `./img/avatar${i}.webp?v=1`;
+            arregloDeLabelRadio[i].style.backgroundImage = `url(.${avatar[i]})`;
+            divRadio.append(arregloDeRadio[i], arregloDeLabelRadio[i]);
+        }
+
+        arregloDeRadio.forEach(radio => {
+            radio.addEventListener('change', function () {
+                if (radio.checked) {
+                    btnRadio.classList.add("active");
+                } else {
+                    btnRadio.classList.remove("active");
+                }
+            });
+        });
+
+        const imagenDeUsuario = document.getElementById("login-logo");
+        const imagenDeUsuarioComentario = document.getElementById("profile-photo");
+
+        const textoBienvenida = document.createElement("h2");
+
+        const imagenAvatar = document.createElement("img");
+
+
         ojo.addEventListener('click', function () {
             let tipo = contraseña.type === "password" ? "text" : "password";
             contraseña.setAttribute("type", tipo);
-            ojo.src = tipo === "password" ? "./img/closed-eye.svg" : "./img/open-eye.svg";
+            ojo.src = tipo === "password" ? `${imagesToPreload[1]}` : `${imagesToPreload[2]}`;
         });
 
         formRegistro1.addEventListener('submit', function (event) {
@@ -256,6 +374,11 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
                 textoErrorContraseña.classList.add("active");
                 contraseña.classList.add("error");
                 contraseñaTrue = false;
+            } else if (!expresiones.password.test(contraseña.value)) {
+                textoErrorContraseña.textContent = 'Tiene que tener entre 4 y 12 caracteres';
+                textoErrorContraseña.classList.add("active");
+                contraseña.classList.add("error");
+                contraseñaTrue = false;
             } else {
                 textoErrorContraseña.textContent = "";
                 textoErrorContraseña.classList.remove("active");
@@ -282,37 +405,6 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             }
 
         });
-
-        const formRegistro2 = document.createElement("form");
-        const arregloDeLabel = [];
-        const arregloDeCheckbox = [];
-        formRegistro2.id = "formulario-registro2";
-        const divCheckbox = document.createElement("div");
-        divCheckbox.className = "div-checkbox";
-        const btnCheckbox = document.createElement("button");
-        btnCheckbox.className = "btn-checkbox";
-        btnCheckbox.textContent = "Elegí 3 más";
-        const back2 = document.createElement("img");
-        back2.src = "./img/back.svg";
-        back2.id = "back2";
-        back2.className = "back";
-        for (let i = 0; i < 6; i++) {
-            arregloDeLabel[i] = document.createElement("label");
-            arregloDeLabel[i].htmlFor = `checkbox${i}`;
-            arregloDeLabel[i].id = `label${i}`;
-            arregloDeCheckbox[i] = document.createElement("input");
-            arregloDeCheckbox[i].type = `checkbox`;
-            arregloDeCheckbox[i].id = `checkbox${i}`;
-
-            divCheckbox.append(arregloDeCheckbox[i], arregloDeLabel[i]);
-        }
-
-        arregloDeLabel[0].textContent = `FILOSFIA`;
-        arregloDeLabel[1].textContent = `FISICA`;
-        arregloDeLabel[2].textContent = `LO HUMANO`;
-        arregloDeLabel[3].textContent = `SALUD`;
-        arregloDeLabel[4].textContent = `SOCIEDAD`;
-        arregloDeLabel[5].textContent = `BIOLOGIA`;
 
         function irAForm2() {
             formRegistro1.remove();
@@ -372,45 +464,6 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             });
         }
 
-        const back3 = document.createElement("img");
-        back3.src = "./img/back.svg";
-        back3.id = "back3";
-        back3.className = "back";
-        const formRegistro3 = document.createElement("form");
-        formRegistro3.id = "formulario-registro3";
-        const divRadio = document.createElement("div");
-        divRadio.className = "div-radio";
-        const arregloDeLabelRadio = [];
-        const arregloDeRadio = [];
-        const avatar = [];
-       
-        const btnRadio = document.createElement("button");
-        btnRadio.className = "btn-radio";
-        btnRadio.textContent = "Finalizar registro";
-        for (let i = 0; i < 4; i++) {
-            arregloDeLabelRadio[i] = document.createElement("label");
-            arregloDeLabelRadio[i].htmlFor = `radio${i}`;
-            arregloDeLabelRadio[i].id = `labelRadio${i}`;
-            arregloDeRadio[i] = document.createElement("input");
-            arregloDeRadio[i].type = `radio`;
-            arregloDeRadio[i].id = `radio${i}`;
-            arregloDeRadio[i].name = "avatarSelection";
-            arregloDeRadio[i].value = `${i}`;
-            avatar[i] = `./img/avatar${i}.webp`;
-            arregloDeLabelRadio[i].style.backgroundImage = `url(.${avatar[i]})`;
-            divRadio.append(arregloDeRadio[i], arregloDeLabelRadio[i]);
-        }
-
-        arregloDeRadio.forEach(radio => {
-            radio.addEventListener('change', function () {
-            if (radio.checked) {
-                btnRadio.classList.add("active");
-            } else {
-                btnRadio.classList.remove("active");
-            }
-        });
-        });
-
 
         function irAForm3() {
             formRegistro2.remove();
@@ -434,30 +487,28 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
                         selectedValue = radio.value;
                     }
                 });
-    
+
                 if (selectedValue !== null) {
                     imagenUsuario = avatar[selectedValue];
                     nombreUsuario = presuntoUsuario;
                     contenedor.innerHTML = "";
                     fnBienvenida();
                 } else {
-                    
+
                 }
             });
         }
 
-        function fnBienvenida(){
-            const imagenDeUsuario = document.getElementById("login-logo");
-            const imagenDeUsuarioComentario = document.getElementById("profile-photo");
+        function fnBienvenida() {
+
             imagenDeUsuario.src = imagenUsuario;
             imagenDeUsuarioComentario.src = imagenUsuario;
             imagenDeUsuario.nextSibling.textContent = `${nombreUsuario}`;
-            const textoBienvenida = document.createElement("h2");
             textoBienvenida.textContent = `¡Bienvenid@ a BoxedCat ${nombreUsuario}!`
-            const imagenAvatar = document.createElement("img");
+            contenedor.append(logo, textoBienvenida, imagenAvatar, cerrar);
+
             imagenAvatar.src = imagenUsuario;
             imagenAvatar.className = "imagen-bienvenida";
-            contenedor.append(logo, textoBienvenida, imagenAvatar, cerrar);
 
         }
 
@@ -656,7 +707,6 @@ document.addEventListener('DOMContentLoaded', () => {
     comentarios.forEach(comentario => {
         comentario.style.display = 'none';
     });
-
 });
 
 

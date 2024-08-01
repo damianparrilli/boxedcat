@@ -16,6 +16,7 @@
 
 body {
     overflow-x: hidden;
+    visibility: hidden;
 }
 
 
@@ -1268,34 +1269,6 @@ footer> :last-child {
     overflow: hidden;
     font-family: "Gothic A1", sans-serif;
 }
-
-
-#label0 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        url("../img/select1.webp");
-}
-
-#label1 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select2.webp");
-}
-
-#label2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select3.webp");
-}
-
-#label3 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select4.webp");
-}
-
-#label4 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select5.webp");
-}
-
-#label5 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select6.webp");
-}
-
-
 
 .div-checkbox input[type="checkbox"]:checked+label {
     
