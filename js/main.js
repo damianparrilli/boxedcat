@@ -1,4 +1,5 @@
 let nombreUsuario = "";
+let imagenUsuario = "";
 const bookmarkNota = document.querySelectorAll('.bookmark-nota');
 const divLogin = document.getElementById("login-popup");
 
@@ -136,6 +137,9 @@ function mostrarFormularioLogin(event) {
 }
 
 function abrirFormRegistro(container, imglogo, title, cerra) {
+    let presuntoUsuario;
+    let presuntaFoto;
+
     const contenedor = container;
     const logo = imglogo;
     const titulo = title;
@@ -190,10 +194,11 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
         const registrarseBtn = document.createElement("button");
         registrarseBtn.textContent = "REGISTRARSE";
         registrarseBtn.className = "iniciar-sesion-button";
-        
+
         const back = document.createElement("img");
         back.src = "./img/back.svg";
         back.id = "back";
+        back.className = "back";
 
         divContraseña.append(contraseña, ojo);
         formRegistro1.append(nombre, textoErrorName, email, textoErrorEmail, divContraseña, textoErrorContraseña, confirmarContraseña, textoErrorConfirmarContraseña, terminosYCondiciones, registrarseBtn);
@@ -207,55 +212,165 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
 
         formRegistro1.addEventListener('submit', function (event) {
             event.preventDefault();
-            if(nombre.value == ""){
+            let nombreTrue = false;
+            let emailTrue = false;
+            let confirmarTrue = false;
+            let contraseñaTrue = false;
+            if (nombre.value == "") {
                 textoErrorName.textContent = "*Este campo no puede estar vacio";
                 textoErrorName.classList.add("active");
                 nombre.classList.add("error");
-            } else if(!expresiones.nombres.test(nombre.value)){
+                nombreTrue = false;
+            } else if (!expresiones.nombres.test(nombre.value)) {
                 textoErrorName.textContent = "*Estas usando caracteres invalidos para este campo";
                 textoErrorName.classList.add("active");
                 nombre.classList.add("error");
+                nombreTrue = false;
             } else {
                 textoErrorName.textContent = "";
                 textoErrorName.classList.remove("active");
                 nombre.classList.remove("error");
+                nombreTrue = true;
             }
 
-            if(email.value == ""){
+            if (email.value == "") {
                 textoErrorEmail.textContent = "*Este campo no puede estar vacio";
                 textoErrorEmail.classList.add("active");
                 email.classList.add("error");
-            } else if(!expresiones.correo.test(email.value)){
+                emailTrue = false;
+            } else if (!expresiones.correo.test(email.value)) {
                 textoErrorEmail.textContent = '*Se requiere un correo con "@" y "."';
                 textoErrorEmail.classList.add("active");
                 email.classList.add("error");
+                emailTrue = false;
             } else {
                 textoErrorEmail.textContent = "";
                 textoErrorEmail.classList.remove("active");
                 email.classList.remove("error");
+                emailTrue = true;
             }
 
-            if(contraseña.value == ""){
+            if (contraseña.value == "") {
                 textoErrorContraseña.textContent = "*Este campo no puede estar vacio";
                 textoErrorContraseña.classList.add("active");
                 contraseña.classList.add("error");
+                contraseñaTrue = false;
             } else {
                 textoErrorContraseña.textContent = "";
                 textoErrorContraseña.classList.remove("active");
                 contraseña.classList.remove("error");
+                contraseñaTrue = true;
             }
 
-            if(contraseña.value != "" && confirmarContraseña.value != "" && confirmarContraseña.value === contraseña.value){
+            if (contraseña.value != "" && confirmarContraseña.value != "" && confirmarContraseña.value === contraseña.value) {
                 textoErrorConfirmarContraseña.textContent = "";
                 textoErrorConfirmarContraseña.classList.remove("active");
                 confirmarContraseña.classList.remove("error");
+                confirmarTrue = true;
             } else {
                 textoErrorConfirmarContraseña.textContent = "*Confirmación invalida";
                 textoErrorConfirmarContraseña.classList.add("active");
                 confirmarContraseña.classList.add("error");
+                confirmarTrue = false;
             }
-           
+
+            if (contraseñaTrue && emailTrue && nombreTrue && confirmarTrue) {
+                irAForm2();
+
+            }
+
         });
+
+        
+
+        function irAForm2() {
+            formRegistro1.remove();
+            back.remove();
+            titulo.innerHTML = "Último paso de inicio de sesion<br>¿Qué te interesa?"
+            const formRegistro2 = document.createElement("form");
+            const arregloDeLabel = [];
+            const arregloDeCheckbox = [];
+            formRegistro2.id = "formulario-registro2";
+            const divCheckbox = document.createElement("div");
+            divCheckbox.className = "div-checkbox";
+            const btnCheckbox = document.createElement("button");
+            btnCheckbox.className = "btn-checkbox";
+            btnCheckbox.textContent = "Elegí 3 más";
+            const back2 = document.createElement("img");
+            back2.src = "./img/back.svg";
+            back2.id = "back2";
+            back2.className = "back";
+            for (let i = 0; i < 6; i++) {
+                arregloDeLabel[i] = document.createElement("label");
+                arregloDeLabel[i].htmlFor = `checkbox${i}`;
+                arregloDeLabel[i].id = `label${i}`;
+                arregloDeCheckbox[i] = document.createElement("input");
+                arregloDeCheckbox[i].type = `checkbox`;
+                arregloDeCheckbox[i].id = `checkbox${i}`;
+
+                divCheckbox.append(arregloDeCheckbox[i], arregloDeLabel[i]);
+            }
+
+            arregloDeLabel[0].textContent = `FILOSFIA`;
+            arregloDeLabel[1].textContent = `FISICA`;
+            arregloDeLabel[2].textContent = `LO HUMANO`;
+            arregloDeLabel[3].textContent = `SALUD`;
+            arregloDeLabel[4].textContent = `SOCIEDAD`;
+            arregloDeLabel[5].textContent = `BIOLOGIA`;
+
+            arregloDeCheckbox.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    let count = 0;
+
+                    arregloDeCheckbox.forEach(box => {
+                        if (box.checked) {
+                            count++;
+                        }
+                    });
+
+                    switch (true) {
+                        case (count >= 3):
+                            btnCheckbox.textContent = "Hecho";
+                            break;
+                        case (count == 2):
+                            btnCheckbox.textContent = "Elegí 1 más";
+                            break;
+                        case (count == 1):
+                            btnCheckbox.textContent = "Elegí 2 más";
+                            break;
+                        case (count == 0):
+                            btnCheckbox.textContent = "Elegí 3 más";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    count >= 3 ? btnCheckbox.classList.add("active") : btnCheckbox.classList.remove("active");
+                });
+            });
+
+            formRegistro2.append(divCheckbox, btnCheckbox);
+            contenedor.appendChild(formRegistro2);
+            contenedor.appendChild(back2);
+
+            back2.addEventListener("click", () => {
+                contenedor.innerHTML = "";
+                titulo.textContent = "Registrate para saber de BoxedCat";
+                contenedor.append(logo, titulo, cerrar, back, formRegistro1);
+            });
+
+            formRegistro2.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (btnCheckbox.classList.value == "btn-checkbox active") {
+                    formRegistro2.remove();
+                    irAForm3();
+                }
+            });
+        }
+
+        function irAForm3() {
+            
+        }
 
         back.addEventListener("click", (event) => {
             document.getElementById("login-popup").innerHTML = "";
