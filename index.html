@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <header>
+    <header id="nav-menu">
         <div class="header-cont">
             <img src="./img/logo-boxedcat.webp" alt="BoxedCat" class="logo-header">
             <ul>
@@ -34,11 +34,12 @@
             <div class="right-part">
                 <a href="#" id="search">
                     <svg class="search-img" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path 
+                        <path
                             d="M73.7778 80L45.7778 52C43.5556 53.7778 41 55.1852 38.1111 56.2222C35.2222 57.2593 32.1482 57.7778 28.8889 57.7778C20.8148 57.7778 13.9822 54.9807 8.39111 49.3867C2.8 43.7926 0.00296531 36.96 2.35156e-06 28.8889C-0.00296061 20.8178 2.79408 13.9852 8.39111 8.39111C13.9882 2.79704 20.8207 0 28.8889 0C36.957 0 43.7911 2.79704 49.3911 8.39111C54.9911 13.9852 57.7867 20.8178 57.7778 28.8889C57.7778 32.1481 57.2593 35.2222 56.2222 38.1111C55.1852 41 53.7778 43.5556 52 45.7778L80 73.7778L73.7778 80ZM28.8889 48.8889C34.4444 48.8889 39.1674 46.9452 43.0578 43.0578C46.9482 39.1704 48.8919 34.4474 48.8889 28.8889C48.8859 23.3304 46.9422 18.6089 43.0578 14.7244C39.1733 10.84 34.4504 8.89482 28.8889 8.88889C23.3274 8.88296 18.6059 10.8281 14.7244 14.7244C10.843 18.6207 8.89778 23.3422 8.88889 28.8889C8.88 34.4356 10.8252 39.1585 14.7244 43.0578C18.6237 46.957 23.3452 48.9007 28.8889 48.8889Z" />
                     </svg>
                 </a>
-                <a href="#" id="login-btn" onclick="manejadorLogin()(event)"><img src="./img/login-logo.svg" alt="Login" id="login-logo">ACCEDER</a>
+                <a href="#" id="login-btn" onclick="manejadorLogin()(event)"><img src="./img/login-logo.svg" alt="Login"
+                        id="login-logo">ACCEDER</a>
             </div>
         </div>
     </header>
@@ -49,13 +50,12 @@
                     <div class="items">
                         <span><img src="./img/clock.svg" alt="Reloj">14 min de lectura</span>
                         <a class="bookmark-nota">
-                        <svg class="bookmark" viewBox="0 0 16 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M15 19L8 15L1 19V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H13C13.5304 1 14.0391 1.21071 14.4142 1.58579C14.7893 1.96086 15 2.46957 15 3V19Z"
-                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </a>
+                            <svg class="bookmark" viewBox="0 0 16 20" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M15 19L8 15L1 19V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H13C13.5304 1 14.0391 1.21071 14.4142 1.58579C14.7893 1.96086 15 2.46957 15 3V19Z"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
                     </div>
                     <div class="items">
                         <span>ENTREVISTA / SALUD</span>
@@ -170,53 +170,31 @@
                                 <img src="./img/arrow.svg" class="flecha" alt="">
                             </a>
                             <div class="contenido-por-expandir" id="expandir2">
-                                <p class="subtitulo-nota">Tu familia vino de Rusia.</p>
-                                <p>Mi familia vino de Rusia alrededor de 1890. Los gauchos viajaron después de huir del
-                                    Holocausto (linchamiento) gracias a los subsidios del banquero y filántropo alemán
-                                    Baron
-                                    Hirsch, quien impulsó la colonia judía en América. Compró terrenos en Entre Ríos, y
-                                    la
-                                    familia Rodriguez fue uno de los grupos que llegaron a la Argentina. Debo admitir
-                                    que
-                                    nunca he tenido mucho contacto con la religión o la tradición, pero el año pasado me
-                                    invitaron a visitar el lugar donde crecieron mis antepasados. Por ejemplo, he
-                                    descubierto que puedo obtener crédito muy barato para comprar maquinaria y
-                                    herramientas
-                                    agrícolas. Mi abuelo, Hector, que murió antes de que yo naciera, se graduó de
-                                    obstetra
-                                    en Buenos Aires y volvió a ser el primer director del hospital del pueblo. Yo me
-                                    sorprendí al enterarme de estas cosas porque yo no sabía nada y mi viejo no me lo
-                                    decía.
-                                    Se está moviendo.</p>
-                                <p class="subtitulo-nota">Introducir el vaso de leche en las escuelas.</p>
-                                <p>Mi viejo me dijo que lo enorgullecía. Toda mi familia salió de las entrañas del
-                                    socialismo, y mi padre fue un líder hasta que se volvió al alfonsismo en 1983, fue
-                                    asesor del presidente. De hecho, él fue el artífice de la corriente socialista
-                                    radical,
-                                    y me tocó a mí, cuando era muy joven, ser el representante de la juventud. Somos
-                                    diez
-                                    gatos locos que están con nosotros como parte de un increíble movimiento a nivel
-                                    nacional para volver a la democracia. Por lo que a mí respecta, aparte de esa cosita
-                                    que
-                                    te acabo de decir, nunca he estado involucrado en política ni en militancia. Toda mi
-                                    atención, mi atención, está en la medicina y la salud pública.</p>
-                                <p class="subtitulo-nota">Anecdotas de tu viejo y Raúl Alfonsín. </p>
-                                <p>Hay una anécdota que nunca olvidaré. Alfonsín había venido a mi casa en 1982 cuando
-                                    se
-                                    instaló la corriente socialista radical, cuando él y Fernando de la Rúa se
-                                    presentaban a
-                                    las elecciones del partido. Lo conocí y quedé maravillado, un verdadero líder, un
-                                    tipo
-                                    increíble, vino y cortó el aire, mi viejo nos presentó y eso fue todo durante cinco
-                                    minutos de cordial conversación. Yo era un niño y estaba muerto de miedo. Unos meses
-                                    después, estaba en uno de los pasillos esperando que Alfonsín apareciera en el lobby
-                                    de
-                                    un comité radical con mucha gente. Lo recuerdo claramente deteniéndose donde yo
-                                    estaba,
-                                    deteniéndose un rato y saludando: "¿Cómo está mi doctor?" Casi me muero, tenía el
-                                    pecho
-                                    hinchado; nunca entendí cómo recordaba, siempre ve y visita a tanta gente. Más tarde
-                                    pasé por mucho en un hospital italiano, donde obtuve mi título de médico.</p>
+                                <p class="subtitulo-nota">¿Se iba a atender?</p>
+                                <p>El director era Jorge Almirón, quien más tarde se convirtió en su ministro de Salud.
+                                    El San Martín era “el hospital de los radicales”; cada vez que tenía un problema, el
+                                    presidente se atendía allí. Nosotros, los más jóvenes, nos escapábamos para verlo y
+                                    tratar de cruzar alguna palabra. Pero esos fueron mis únicos contactos con la
+                                    política; el resto del tiempo lo dediqué a estudiar.</p>
+                                <p class="subtitulo-nota">¿Qué tipo de médico sos?</p>
+                                <p>Soy médico de familia, de atención primaria, de esos que están en la primera línea;
+                                    un puente entre la medicina y la salud pública. Intento encarnar el concepto
+                                    tradicional del médico de cabecera que resuelve los problemas frecuentes y deriva
+                                    hacia otros especialistas si las necesidades son más específicas y complejas. Me
+                                    gusta ser el médico de confianza, el que además del conocimiento técnico, se destaca
+                                    por sus habilidades comunicacionales.</p>
+                                <p class="subtitulo-nota">¿Hablás con tus pacientes?</p>
+                                <p>Sucede mucho, especialmente con los especialistas y su formación técnica que les
+                                    impide tener en cuenta otros aspectos más humanos. No advierten las necesidades, lo
+                                    que los pacientes demandan, sus miedos, la forma en que se dicen las cosas. El
+                                    médico de familia se define como un especialista en personas y no tanto en órganos o
+                                    sistemas específicos. Me parece que es una buena manera de entender la diferencia.
+                                    Cuando empecé mi formación, lo hice en medicina interna, luego pasé a medicina
+                                    familiar y con el tiempo creé ese servicio en el San Martín. Fui jefe durante 20
+                                    años y hoy es un polo muy fuerte de atención primaria y académica en Argentina y en
+                                    la región. En 2010 renuncié y desde entonces me dediqué de lleno al Instituto de
+                                    Efectividad Clínica y Sanitaria (IECS), donde fui director general. Más tarde llegué
+                                    al Ministerio.</p>
                             </div>
                         </div>
                         <div class="minicontenido">
@@ -227,53 +205,40 @@
                                 <img src="./img/arrow.svg" class="flecha" alt="">
                             </a>
                             <div class="contenido-por-expandir" id="expandir3">
-                                <p class="subtitulo-nota">Tu familia vino de Rusia.</p>
-                                <p>Mi familia vino de Rusia alrededor de 1890. Los gauchos viajaron después de huir del
-                                    Holocausto (linchamiento) gracias a los subsidios del banquero y filántropo alemán
-                                    Baron
-                                    Hirsch, quien impulsó la colonia judía en América. Compró terrenos en Entre Ríos, y
-                                    la
-                                    familia Rodriguez fue uno de los grupos que llegaron a la Argentina. Debo admitir
-                                    que
-                                    nunca he tenido mucho contacto con la religión o la tradición, pero el año pasado me
-                                    invitaron a visitar el lugar donde crecieron mis antepasados. Por ejemplo, he
-                                    descubierto que puedo obtener crédito muy barato para comprar maquinaria y
-                                    herramientas
-                                    agrícolas. Mi abuelo, Hector, que murió antes de que yo naciera, se graduó de
-                                    obstetra
-                                    en Buenos Aires y volvió a ser el primer director del hospital del pueblo. Yo me
-                                    sorprendí al enterarme de estas cosas porque yo no sabía nada y mi viejo no me lo
-                                    decía.
-                                    Se está moviendo.</p>
-                                <p class="subtitulo-nota">Introducir el vaso de leche en las escuelas.</p>
-                                <p>Mi viejo me dijo que lo enorgullecía. Toda mi familia salió de las entrañas del
-                                    socialismo, y mi padre fue un líder hasta que se volvió al alfonsismo en 1983, fue
-                                    asesor del presidente. De hecho, él fue el artífice de la corriente socialista
-                                    radical,
-                                    y me tocó a mí, cuando era muy joven, ser el representante de la juventud. Somos
-                                    diez
-                                    gatos locos que están con nosotros como parte de un increíble movimiento a nivel
-                                    nacional para volver a la democracia. Por lo que a mí respecta, aparte de esa cosita
-                                    que
-                                    te acabo de decir, nunca he estado involucrado en política ni en militancia. Toda mi
-                                    atención, mi atención, está en la medicina y la salud pública.</p>
-                                <p class="subtitulo-nota">Anecdotas de tu viejo y Raúl Alfonsín. </p>
-                                <p>Hay una anécdota que nunca olvidaré. Alfonsín había venido a mi casa en 1982 cuando
-                                    se
-                                    instaló la corriente socialista radical, cuando él y Fernando de la Rúa se
-                                    presentaban a
-                                    las elecciones del partido. Lo conocí y quedé maravillado, un verdadero líder, un
-                                    tipo
-                                    increíble, vino y cortó el aire, mi viejo nos presentó y eso fue todo durante cinco
-                                    minutos de cordial conversación. Yo era un niño y estaba muerto de miedo. Unos meses
-                                    después, estaba en uno de los pasillos esperando que Alfonsín apareciera en el lobby
-                                    de
-                                    un comité radical con mucha gente. Lo recuerdo claramente deteniéndose donde yo
-                                    estaba,
-                                    deteniéndose un rato y saludando: "¿Cómo está mi doctor?" Casi me muero, tenía el
-                                    pecho
-                                    hinchado; nunca entendí cómo recordaba, siempre ve y visita a tanta gente. Más tarde
-                                    pasé por mucho en un hospital italiano, donde obtuve mi título de médico.</p>
+                                <p class="subtitulo-nota">¿Quién te convocó para ser ministro?</p>
+                                <p>Nunca imaginé que me tocaría. Fue medio de casualidad: era el médico de cabecera de
+                                    Pablo Fernández, economista y político, desde 2016 al frente de la Auditoría General
+                                    de la Nación. Es un dirigente radical de peso, un histórico del alfonsinismo, un
+                                    pensador muy pero muy importante. Nos empezamos a hacer amigos y, en principio, me
+                                    llamó a participar de unas reuniones cuando Ricardo Alfonsín, en 2011, fue como
+                                    candidato a la presidencia. Asistí un tiempito a unas reuniones y me fui; la verdad
+                                    es que no me llamó demasiado la atención. A principios de 2014, comenzó a surgir
+                                    Ernesto Sanz como precandidato radical en Cambiemos y me gustó mucho. Sin quererlo
+                                    me convertí en el referente de salud de su equipo, aunque para ser justos, tampoco
+                                    era una figura protagónica ni mucho menos. Estaba ahí, simplemente.</p>
+                                <p class="subtitulo-nota">Cuando ganó Macri, ¿cómo siguió?</p>
+                                <p>Claro, después ganó Macri y seguí con mi vida. Estuve en algunos encuentros de la
+                                    Fundación Pensar del PRO, tuve una charla con Miguel Pérez que quería ver qué pasaba
+                                    conmigo; si me interesaría, en un futuro, formar parte del gobierno. Me acuerdo que
+                                    era fines de 2015 y le agradecí mucho pero le advertí que si me convocaban en esa
+                                    fecha no estaría dispuesto a agarrar ningún cargo.</p>
+                                <p class="subtitulo-nota">¿Por qué?</p>
+                                <p>Soy fanático de River y ese año, con mi hijo y unos amigos, nos íbamos a Japón a
+                                    jugar con el Barcelona. Impostergable. Fue un viaje realmente increíble.</p>
+                                <p class="subtitulo-nota">No fuiste su ministro de Salud desde el comienzo</p>
+                                <p>No, eso no influyó. Jorge Lemus –que asumió en 2015– ya estaba en carpeta trabajando
+                                    con el espacio desde hacía mucho antes. En 2017 tuvo problemas de gestión, se lo
+                                    acusaba de que el área estaba un poco paralizada. A principios de ese año me
+                                    convocaron para ser secretario de Promoción de la Salud, Prevención y Control de
+                                    Riesgo, una suerte de viceministro. Fue mi primer desembarco en el sector público,
+                                    así que tuve que aprender mucho en poco tiempo. Como la gestión de Lemus estaba
+                                    desgastada, en octubre asumí al frente de la cartera. Fueron dos años, aunque
+                                    parecieron más. Se te hace largo cuando estás ahí. A mí me dio mucha visibilidad la
+                                    participación en el debate por la Ley de la Interrupción Voluntaria del Embarazo.
+                                </p>
+                                <p class="subtitulo-nota">Que el presidente esté en contra ¿te generó un problema?</p>
+                                <p>Siempre digo lo mismo y nadie me cree.</p>
+
                             </div>
                         </div>
                         <div class="nota-inactiva"></div>
@@ -375,12 +340,12 @@
         </section>
         <section class="comentarios">
             <div class="row">
-                    <div class="cantidad-comentarios">
-                        <span id="cantidad-comentarios">3</span>
-                        <span>COMENTARIOS</span>
-                    </div>
-                    
-                
+                <div class="cantidad-comentarios">
+                    <span id="cantidad-comentarios">3</span>
+                    <span>COMENTARIOS</span>
+                </div>
+
+
                 <div class="row-comentarios">
                     <form class="escribir-comentario" id="formComentario">
                         <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo" id="profile-photo">
@@ -393,7 +358,7 @@
                         <div class="comentario-individual">
                             <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo">
                             <div>
-                                <h3>Lucas</h3>
+                                <h3>Damián</h3>
                                 <p>11/06/24 14:52</p>
                             </div>
                             <p>Interesante nota. Pudimos ver un poco del costado politico q tan poco se visualizo. se
@@ -403,21 +368,21 @@
                         <div class="comentario-individual">
                             <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo">
                             <div>
-                                <h3>Lucas</h3>
+                                <h3>Cielo</h3>
                                 <p>05/07/24 15:32</p>
                             </div>
-                            <p>Interesante nota. Pudimos ver un poco del costado politico q tan poco se visualizo. se
-                                nota es muy buen profesional y hubiese estado bueno que siga con la politica....</p>
+                            <p>Muy buena entrevista. No tenía idea de su participación en la política. Se nota que es un
+                                tipo muy capaz y profesional.</p>
 
                         </div>
                         <div class="comentario-individual">
                             <img src="./img/autor.svg" alt="Profile Photo" class="profile-photo">
                             <div>
-                                <h3>Lucas</h3>
+                                <h3>Belen</h3>
                                 <p>20/02/19 09:04</p>
                             </div>
-                            <p>Interesante nota. Pudimos ver un poco del costado politico q tan poco se visualizo. se
-                                nota es muy buen profesional y hubiese estado bueno que siga con la politica....</p>
+                            <p>Me gustó la nota. Es interesante ver cómo alguien tan dedicado a la medicina también tuvo
+                                un rol en la política. Se ve que tiene mucho conocimiento y experiencia.</p>
 
                         </div>
                     </div>
@@ -441,8 +406,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M15 19L8 15L1 19V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H13C13.5304 1 14.0391 1.21071 14.4142 1.58579C14.7893 1.96086 15 2.46957 15 3V19Z"
-                                        stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </a>
                         </div>
@@ -464,8 +428,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M15 19L8 15L1 19V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H13C13.5304 1 14.0391 1.21071 14.4142 1.58579C14.7893 1.96086 15 2.46957 15 3V19Z"
-                                        stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </a>
                         </div>
@@ -487,8 +450,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M15 19L8 15L1 19V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H13C13.5304 1 14.0391 1.21071 14.4142 1.58579C14.7893 1.96086 15 2.46957 15 3V19Z"
-                                        stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </a>
                         </div>
@@ -517,20 +479,27 @@
                 <p>El mayor peligro de la curiosidad es que es contagiosa</p>
             </div>
             <ul>
-                <li><a href="">Inicio</a></li>
-                <li><a href="">Notas</a></li>
-                <li><a href="">Tienda</a></li>
-                <li><a href="">Donar</a></li>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Notas</a></li>
+                <li><a href="#">Tienda</a></li>
+                <li><a href="#">Donar</a></li>
             </ul>
             <ul>
-                <li><a href="">Acceder</a></li>
-                <li><a href="">Registrarse</a></li>
+                <li><a onclick="manejadorLogin()(event)">Acceder</a></li>
+                <li><a href="#">Terminos y condiciones</a></li>
             </ul>
         </div>
         <div>
-        <span>Maquetado por Damián Parrilli ©2024</span>
-    </div>
+            <span>Maquetado por Damián Parrilli ©2024</span>
+        </div>
     </footer>
+    <div id="ventana-mobile">
+        <img src="./img/logo-boxedcat.webp" alt="BoxedCat" class="logo">
+        <h2>Esta pagina no esta adaptada para dispositivos moviles.<br>Te recomiendo establecerlo en el navegador como
+            "Sitio para computadoras" desde el menu indicado por la flecha.<br>¡Muchas gracias!</h2>
+        <button onclick="cerrarVentanaMobile()">Cerrar</button>
+        <img src="./img/flecha-ventana-mobile.svg" alt="Arrow" class="arrow">
+    </div>
     <div id="preloaded-images" style="display: none;"></div>
     <div id="login-popup"></div>
     <script src="./js/main.js"></script>

@@ -30,9 +30,9 @@ async function preloadImages(imageUrls) {
 }
 
 const imagesToPreload = [
-    './img/back.svg?v=1',
-    './img/closed-eye.svg?v=1',
-    './img/open-eye.svg?v=1',
+    "./img/back.svg?v=1",
+    "./img/closed-eye.svg?v=1",
+    "./img/open-eye.svg?v=1",
     "./img/logo-boxedcat.webp?v=1",
     "./img/close.svg?v=1",
     "./img/avatar0.webp?v=1",
@@ -45,10 +45,25 @@ const imagesToPreload = [
     "./img/select4.webp?v=1",
     "./img/select5.webp?v=1",
     "./img/select6.webp?v=1",
+    "./img/checked.webp"
 ];
 
 preloadImages(imagesToPreload);
 
+let lastScrollTop = 0;
+const header = document.getElementById('nav-menu');
+
+window.addEventListener('scroll', function() {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop > lastScrollTop) {
+        header.style.top = "-75px"; 
+    } else {
+        header.style.top = "0";
+    }
+    
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+});
 
 const expresiones = {
     nombres: /^[a-zA-ZÀ-ÿ\s]{1,20}$/,
@@ -71,6 +86,7 @@ function manejadorLogin(funcion) {
 }
 
 function mostrarFormularioLogin(event) {
+    document.body.style.overflowY = "hidden";
     const overlay = document.createElement("div");
     overlay.className = "overlay";
     const contenedor = document.createElement("div");
@@ -523,6 +539,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
 
 function cerrarForm() {
     divLogin.firstChild.remove();
+    document.body.style.overflowY = "visible";
 }
 
 function cambiarBookmarkNota() {
@@ -560,6 +577,7 @@ function expandir(event) {
 }
 
 let expando = false;
+let posicionGuardada = null;
 
 function expandirTotal() {
     expando = !expando;
@@ -571,17 +589,42 @@ function expandirTotal() {
     const verMasText = verMas.lastElementChild;
 
     if (expando) {
-        nota.style.maxHeight = "100%";
+        function ajustarMaxHeight() {
+            if (expando) {
+                const height = nota.scrollHeight + 'px'; 
+                nota.style.maxHeight = height;
+                console.log('Height ajustado a:', height);
+            }
+        }
         gradiente.style.visibility = "hidden";
         verMasImg.classList.add("active");
         verMasText.textContent = "Ver menos";
+        posicionGuardada = window.scrollY;
+        const interval = setInterval(() => {
+            ajustarMaxHeight();
+        }, 100); 
+        document.querySelector('.ver-mas').addEventListener('click', () => {
+            if (!expando) {
+                clearInterval(interval);
+            }
+        });
+        
+       
     } else {
-        nota.style.maxHeight = "600px";
+        console.log(posicionGuardada)
+        nota.classList.remove("active");
+        nota.style.maxHeight = '600px';
         gradiente.style.visibility = "visible";
         verMasImg.classList.remove('active');
         verMasText.textContent = "Ver más";
+        window.scrollTo({
+            top: posicionGuardada,
+            behavior: 'smooth' // 'smooth' para un desplazamiento animado
+        });
+        posicionGuardada = null;
     }
 }
+
 
 const estrellas = document.querySelectorAll('.star-rate');
 let seleccionado = false;
@@ -730,7 +773,7 @@ function mostrarMas() {
         comentarios.forEach(comentario => {
             comentario.style.display = 'flex';
         });
-
+        posicionGuardada = window.scrollY;
         btnMostrarMas.textContent = "Mostrar menos";
 
     } else {
@@ -748,7 +791,11 @@ function mostrarMas() {
         });
 
         btnMostrarMas.textContent = "Mostrar más";
-
+        window.scrollTo({
+            top: posicionGuardada,
+            behavior: 'smooth' // 'smooth' para un desplazamiento animado
+        });
+        posicionGuardada = null;
     }
     mostrameMas = !mostrameMas;
 }
@@ -768,3 +815,10 @@ function adjustScale() {
 }
 
 window.onresize = adjustScale;
+
+function cerrarVentanaMobile(){
+    const ventanaMobile = document.getElementById("ventana-mobile");
+    ventanaMobile.remove();
+    document.body.style.overflowY = "visible";
+    document.documentElement.style.overflow = "visible";
+}

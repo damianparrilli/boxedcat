@@ -14,6 +14,10 @@
     background-repeat: no-repeat;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     overflow-x: hidden;
     visibility: hidden;
@@ -22,10 +26,13 @@ body {
 
 header {
     background: linear-gradient(#0D1823, #14273C);
-    position: fixed;
+    position: sticky;
     top: 0;
+    left: 0;
     width: 100%;
     z-index: 2;
+    transition: top 0.3s;
+    overflow: hidden;
 }
 
 .logo-header {
@@ -103,7 +110,6 @@ header ul a:hover {
 .nota {
     position: relative;
     padding-top: 275px;
-    margin-top: 70px;
     padding-bottom: 80px;
 }
 
@@ -230,6 +236,13 @@ header ul a:hover {
     overflow: hidden;
     max-height: 600px;
     position: relative;
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.contenido-nota.active {
+    max-height: 2500px;
+    
 }
 
 .nota-inactiva {
@@ -956,6 +969,7 @@ footer {
     padding: 100px 50px 75px 50px;
     gap: 50px;
     width: 100%;
+    
 }
 
 .footcontainer> :first-child {
@@ -987,12 +1001,14 @@ footer {
     justify-content: center;
     flex-direction: column;
     gap: 35px;
+    
 }
 
 .footcontainer ul a {
     text-decoration: none;
     color: white;
     font-size: 1.1em;
+    cursor: pointer;
 }
 
 .footcontainer ul a:hover {
@@ -1375,7 +1391,9 @@ footer> :last-child {
     border: 10px solid var(--button-color);
 }
 
-
+#ventana-mobile{
+    display: none;
+}
 
 @media only screen and (max-height: 700px) {
     html {
@@ -1392,5 +1410,69 @@ footer> :last-child {
 
     .autor-y-valoracion {
         font-size: 1.15em;
+    }
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    #ventana-mobile{
+        position: fixed;
+        overflow: hidden;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 30px;
+        text-align: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(245, 245, 245);
+        top: 0;
+        left: 0;
+        z-index: 100;
+        gap: 50px;
+        
+    }
+  
+    #ventana-mobile h2{
+        
+        font-family: "Gothic A1", sans-serif;
+        color: var(--button-color);
+        font-weight: 600;
+        font-size: clamp(1.286rem, 1rem + 1vi, 1.571rem);
+        line-height: 1.4em;
+    }
+    #ventana-mobile .logo{
+        filter: brightness(0) saturate(100%) invert(14%) sepia(38%) saturate(2271%) hue-rotate(155deg) brightness(94%) contrast(104%);
+    }
+
+    #ventana-mobile .arrow{
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: rotate(45deg);
+        width: 75px;
+        margin: 10px 25px;
+    }
+
+    #ventana-mobile button{
+        font-family: "Gothic A1", sans-serif;
+        color: var(--accent-color);
+        font-weight: 600;
+        font-size: 1.2em;
+        padding: 12px 50px;
+        border-radius: 10px;
+        background-color: transparent;
+        border: 3px solid var(--accent-color);
+    }
+
+    body{
+        overflow-y: hidden;
+    }
+
+    html{
+        overflow: hidden;
     }
 }
