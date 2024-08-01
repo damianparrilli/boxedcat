@@ -4,6 +4,7 @@ const bookmarkNota = document.querySelectorAll('.bookmark-nota');
 const divLogin = document.getElementById("login-popup");
 
 
+
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
     nombres: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
@@ -275,48 +276,50 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             }
 
             if (contraseñaTrue && emailTrue && nombreTrue && confirmarTrue) {
+                presuntoUsuario = nombre.value;
                 irAForm2();
 
             }
 
         });
 
-        
+        const formRegistro2 = document.createElement("form");
+        const arregloDeLabel = [];
+        const arregloDeCheckbox = [];
+        formRegistro2.id = "formulario-registro2";
+        const divCheckbox = document.createElement("div");
+        divCheckbox.className = "div-checkbox";
+        const btnCheckbox = document.createElement("button");
+        btnCheckbox.className = "btn-checkbox";
+        btnCheckbox.textContent = "Elegí 3 más";
+        const back2 = document.createElement("img");
+        back2.src = "./img/back.svg";
+        back2.id = "back2";
+        back2.className = "back";
+        for (let i = 0; i < 6; i++) {
+            arregloDeLabel[i] = document.createElement("label");
+            arregloDeLabel[i].htmlFor = `checkbox${i}`;
+            arregloDeLabel[i].id = `label${i}`;
+            arregloDeCheckbox[i] = document.createElement("input");
+            arregloDeCheckbox[i].type = `checkbox`;
+            arregloDeCheckbox[i].id = `checkbox${i}`;
+
+            divCheckbox.append(arregloDeCheckbox[i], arregloDeLabel[i]);
+        }
+
+        arregloDeLabel[0].textContent = `FILOSFIA`;
+        arregloDeLabel[1].textContent = `FISICA`;
+        arregloDeLabel[2].textContent = `LO HUMANO`;
+        arregloDeLabel[3].textContent = `SALUD`;
+        arregloDeLabel[4].textContent = `SOCIEDAD`;
+        arregloDeLabel[5].textContent = `BIOLOGIA`;
 
         function irAForm2() {
             formRegistro1.remove();
             back.remove();
-            titulo.innerHTML = "Último paso de inicio de sesion<br>¿Qué te interesa?"
-            const formRegistro2 = document.createElement("form");
-            const arregloDeLabel = [];
-            const arregloDeCheckbox = [];
-            formRegistro2.id = "formulario-registro2";
-            const divCheckbox = document.createElement("div");
-            divCheckbox.className = "div-checkbox";
-            const btnCheckbox = document.createElement("button");
-            btnCheckbox.className = "btn-checkbox";
-            btnCheckbox.textContent = "Elegí 3 más";
-            const back2 = document.createElement("img");
-            back2.src = "./img/back.svg";
-            back2.id = "back2";
-            back2.className = "back";
-            for (let i = 0; i < 6; i++) {
-                arregloDeLabel[i] = document.createElement("label");
-                arregloDeLabel[i].htmlFor = `checkbox${i}`;
-                arregloDeLabel[i].id = `label${i}`;
-                arregloDeCheckbox[i] = document.createElement("input");
-                arregloDeCheckbox[i].type = `checkbox`;
-                arregloDeCheckbox[i].id = `checkbox${i}`;
+            titulo.innerHTML = "!Queremos saber más de vos!<br>¿Qué te interesa?"
 
-                divCheckbox.append(arregloDeCheckbox[i], arregloDeLabel[i]);
-            }
 
-            arregloDeLabel[0].textContent = `FILOSFIA`;
-            arregloDeLabel[1].textContent = `FISICA`;
-            arregloDeLabel[2].textContent = `LO HUMANO`;
-            arregloDeLabel[3].textContent = `SALUD`;
-            arregloDeLabel[4].textContent = `SOCIEDAD`;
-            arregloDeLabel[5].textContent = `BIOLOGIA`;
 
             arregloDeCheckbox.forEach(checkbox => {
                 checkbox.addEventListener('change', function () {
@@ -355,6 +358,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
 
             back2.addEventListener("click", () => {
                 contenedor.innerHTML = "";
+                presuntoUsuario = "";
                 titulo.textContent = "Registrate para saber de BoxedCat";
                 contenedor.append(logo, titulo, cerrar, back, formRegistro1);
             });
@@ -362,14 +366,99 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             formRegistro2.addEventListener('submit', function (event) {
                 event.preventDefault();
                 if (btnCheckbox.classList.value == "btn-checkbox active") {
-                    formRegistro2.remove();
+
                     irAForm3();
                 }
             });
         }
 
+        const back3 = document.createElement("img");
+        back3.src = "./img/back.svg";
+        back3.id = "back3";
+        back3.className = "back";
+        const formRegistro3 = document.createElement("form");
+        formRegistro3.id = "formulario-registro3";
+        const divRadio = document.createElement("div");
+        divRadio.className = "div-radio";
+        const arregloDeLabelRadio = [];
+        const arregloDeRadio = [];
+        const avatar = [];
+       
+        const btnRadio = document.createElement("button");
+        btnRadio.className = "btn-radio";
+        btnRadio.textContent = "Finalizar registro";
+        for (let i = 0; i < 4; i++) {
+            arregloDeLabelRadio[i] = document.createElement("label");
+            arregloDeLabelRadio[i].htmlFor = `radio${i}`;
+            arregloDeLabelRadio[i].id = `labelRadio${i}`;
+            arregloDeRadio[i] = document.createElement("input");
+            arregloDeRadio[i].type = `radio`;
+            arregloDeRadio[i].id = `radio${i}`;
+            arregloDeRadio[i].name = "avatarSelection";
+            arregloDeRadio[i].value = `${i}`;
+            avatar[i] = `./img/avatar${i}.png`;
+            arregloDeLabelRadio[i].style.backgroundImage = `url(.${avatar[i]})`;
+            divRadio.append(arregloDeRadio[i], arregloDeLabelRadio[i]);
+        }
+
+        arregloDeRadio.forEach(radio => {
+            radio.addEventListener('change', function () {
+            if (radio.checked) {
+                btnRadio.classList.add("active");
+            } else {
+                btnRadio.classList.remove("active");
+            }
+        });
+        });
+
+
         function irAForm3() {
-            
+            formRegistro2.remove();
+            back2.remove();
+            titulo.innerHTML = "¡Último paso!<br>Selecciona tu avatar"
+            formRegistro3.append(divRadio, btnRadio);
+            contenedor.appendChild(formRegistro3);
+            contenedor.appendChild(back3);
+
+            back3.addEventListener("click", () => {
+                contenedor.innerHTML = "";
+                titulo.innerHTML = "!Queremos saber más de vos!<br>¿Qué te interesa?";
+                contenedor.append(logo, titulo, cerrar, back2, formRegistro2);
+            });
+
+            formRegistro3.addEventListener('submit', function (event) {
+                event.preventDefault();
+                let selectedValue = null;
+                arregloDeRadio.forEach(radio => {
+                    if (radio.checked) {
+                        selectedValue = radio.value;
+                    }
+                });
+    
+                if (selectedValue !== null) {
+                    imagenUsuario = avatar[selectedValue];
+                    nombreUsuario = presuntoUsuario;
+                    contenedor.innerHTML = "";
+                    fnBienvenida();
+                } else {
+                    
+                }
+            });
+        }
+
+        function fnBienvenida(){
+            const imagenDeUsuario = document.getElementById("login-logo");
+            const imagenDeUsuarioComentario = document.getElementById("profile-photo");
+            imagenDeUsuario.src = imagenUsuario;
+            imagenDeUsuarioComentario.src = imagenUsuario;
+            imagenDeUsuario.nextSibling.textContent = `${nombreUsuario}`;
+            const textoBienvenida = document.createElement("h2");
+            textoBienvenida.textContent = `¡Bienvenid@ a BoxedCat ${nombreUsuario}!`
+            const imagenAvatar = document.createElement("img");
+            imagenAvatar.src = imagenUsuario;
+            imagenAvatar.className = "imagen-bienvenida";
+            contenedor.append(logo, textoBienvenida, imagenAvatar, cerrar);
+
         }
 
         back.addEventListener("click", (event) => {
@@ -536,7 +625,7 @@ function enviarComentario(event) {
         const comentarioIndividual = document.createElement("div");
         comentarioIndividual.classList.add("comentario-individual");
         const imagenPerfil = document.createElement("img");
-        imagenPerfil.src = "./img/autor.svg";
+        imagenPerfil.src = imagenUsuario;
         imagenPerfil.alt = "Profile Photo";
         imagenPerfil.classList.add("profile-photo")
         const nombreYFecha = document.createElement("div");
