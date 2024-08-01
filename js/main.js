@@ -808,6 +808,7 @@ function adjustScale() {
     if (viewportHeight < 800) {
         scaleValue = viewportHeight / 800;
     }
+    
     var element = document.getElementById('login-container');
     if (element) {
         element.style.transform = 'scale(' + scaleValue + ')';

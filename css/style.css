@@ -242,7 +242,7 @@ header ul a:hover {
 
 .contenido-nota.active {
     max-height: 2500px;
-    
+
 }
 
 .nota-inactiva {
@@ -662,7 +662,7 @@ header ul a:hover {
     background-color: #d45140;
 }
 
-.profile-photo{
+.profile-photo {
     background-color: #0D1823;
     position: absolute;
     object-fit: contain;
@@ -969,7 +969,7 @@ footer {
     padding: 100px 50px 75px 50px;
     gap: 50px;
     width: 100%;
-    
+
 }
 
 .footcontainer> :first-child {
@@ -1001,7 +1001,7 @@ footer {
     justify-content: center;
     flex-direction: column;
     gap: 35px;
-    
+
 }
 
 .footcontainer ul a {
@@ -1230,7 +1230,7 @@ footer> :last-child {
     color: red;
 }
 
-.btn-checkbox{
+.btn-checkbox {
     width: 100%;
     padding: 15px 0;
     margin-top: 25px;
@@ -1243,16 +1243,16 @@ footer> :last-child {
     color: white;
 }
 
-.btn-checkbox.active{
-    
+.btn-checkbox.active {
+
     background-color: var(--accent-color);
-    
+
 }
 
-.btn-checkbox.active:hover{
-    
+.btn-checkbox.active:hover {
+
     background-color: #d45140;
-    
+
 }
 
 .div-checkbox {
@@ -1287,13 +1287,13 @@ footer> :last-child {
 }
 
 .div-checkbox input[type="checkbox"]:checked+label {
-    
+
     box-shadow: inset 0 0 0 5px var(--button-color);
-    
+
 }
 
 .div-checkbox input[type="checkbox"]:checked+label::before {
-    
+
     content: "";
     position: absolute;
     top: 0;
@@ -1339,13 +1339,13 @@ footer> :last-child {
 }
 
 .div-radio input[type="radio"]:checked+label {
-    
+
     box-shadow: inset 0 0 0 5px var(--button-color);
-    
+
 }
 
 .div-radio input[type="radio"]:checked+label::before {
-    
+
     content: "";
     position: absolute;
     top: 0;
@@ -1358,7 +1358,7 @@ footer> :last-child {
     background-position: top right;
 }
 
-.btn-radio{
+.btn-radio {
     width: 100%;
     padding: 15px 0;
     margin-top: 25px;
@@ -1371,19 +1371,19 @@ footer> :last-child {
     color: white;
 }
 
-.btn-radio.active{
-    
+.btn-radio.active {
+
     background-color: var(--accent-color);
-    
+
 }
 
-.btn-radio.active:hover{
-    
+.btn-radio.active:hover {
+
     background-color: #d45140;
-    
+
 }
 
-.imagen-bienvenida{
+.imagen-bienvenida {
     border-radius: 50%;
     max-width: 150px;
     width: 100%;
@@ -1391,7 +1391,7 @@ footer> :last-child {
     border: 10px solid var(--button-color);
 }
 
-#ventana-mobile{
+#ventana-mobile {
     display: none;
 }
 
@@ -1413,13 +1413,40 @@ footer> :last-child {
     }
 }
 
+@media only screen and (min-height: 1100px) {
+    html {
+        font-size: 20px;
+    }
+
+    header {
+        font-size: 1.1em;
+    }
+
+    .donar-escrito {
+        font-size: 0.9em;
+    }
+
+    .login-container {
+        font-size: 1.15em;
+        scale: 1.2;
+    }
+
+    .row-comentarios {
+        font-size: 1.15em;
+    }
+
+    .autor-y-valoracion {
+        font-size: 1.15em;
+    }
+}
+
 
 
 @media only screen and (max-width: 800px) {
-    #ventana-mobile{
+    #ventana-mobile {
         position: fixed;
         overflow: hidden;
-        
+
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1433,22 +1460,23 @@ footer> :last-child {
         left: 0;
         z-index: 100;
         gap: 50px;
-        
+
     }
-  
-    #ventana-mobile h2{
-        
+
+    #ventana-mobile h2 {
+
         font-family: "Gothic A1", sans-serif;
         color: var(--button-color);
         font-weight: 600;
         font-size: clamp(1.286rem, 1rem + 1vi, 1.571rem);
         line-height: 1.4em;
     }
-    #ventana-mobile .logo{
+
+    #ventana-mobile .logo {
         filter: brightness(0) saturate(100%) invert(14%) sepia(38%) saturate(2271%) hue-rotate(155deg) brightness(94%) contrast(104%);
     }
 
-    #ventana-mobile .arrow{
+    #ventana-mobile .arrow {
         position: absolute;
         top: 0;
         right: 0;
@@ -1457,7 +1485,7 @@ footer> :last-child {
         margin: 10px 25px;
     }
 
-    #ventana-mobile button{
+    #ventana-mobile button {
         font-family: "Gothic A1", sans-serif;
         color: var(--accent-color);
         font-weight: 600;
@@ -1468,11 +1496,11 @@ footer> :last-child {
         border: 3px solid var(--accent-color);
     }
 
-    body{
+    body {
         overflow-y: hidden;
     }
 
-    html{
+    html {
         overflow: hidden;
     }
 }
