@@ -852,6 +852,7 @@ header ul a:hover {
 .card-individual> :nth-child(2)> :first-child img {
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
     height: auto;
+    width: 23px;
 }
 
 .card-individual> :nth-child(3) {
