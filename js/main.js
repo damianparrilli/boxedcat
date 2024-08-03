@@ -1,42 +1,51 @@
+//Variables globales
 let nombreUsuario = "";
 let imagenUsuario = "";
 const bookmarkNota = document.querySelectorAll('.bookmark-nota');
 const divLogin = document.getElementById("login-popup");
+const estrellas = document.querySelectorAll('.star-rate');
+let seleccionado = false;
+let relleno = null;
+const numTotal = document.getElementById("numero-total");
+let numeroTotal = parseInt(numTotal.textContent);
+let correoLogueado;
+let cambioBookmarkNota = false;
 
-//  localStorage.removeItem('usuarios');
-//  localStorage.removeItem('usuarioLogueado');
 
-
-function verificarLogin(){
+//Funcion para verificar el login ni bien empiece la pagina
+function verificarLogin() {
     let logged = JSON.parse(localStorage.getItem('usuarioLogueado'));
     const imagenDeUsuario = document.getElementById("login-logo");
     const imagenDeUsuarioComentario = document.getElementById("profile-photo");
     const logout = document.querySelector(".div-login-btn");
-if(logged !== null){
-    nombreUsuario = logged.usuario;
-    imagenUsuario = logged.avatar;
-    imagenDeUsuario.src = imagenUsuario;
-    imagenDeUsuarioComentario.src = imagenUsuario;
-    imagenDeUsuario.nextSibling.textContent = `${nombreUsuario}`;
-    
-    logout.classList.add("logged");
-} else {
-    nombreUsuario = "";
-    imagenUsuario = "";
-    imagenDeUsuario.src = "./img/login-logo.svg";
-    imagenDeUsuarioComentario.src = "./img/autor.svg";
-    imagenDeUsuario.nextSibling.textContent = `ACCEDER`;
-    logout.classList.remove("logged");
-}
+    if (logged !== null) {
+        nombreUsuario = logged.usuario;
+        imagenUsuario = logged.avatar;
+        imagenDeUsuario.src = imagenUsuario;
+        imagenDeUsuarioComentario.src = imagenUsuario;
+        imagenDeUsuario.nextSibling.textContent = `${nombreUsuario}`;
+        correoLogueado = logged.email;
+        logout.classList.add("logged");
+        updateTodo(logged.email);
+    } else {
+        nombreUsuario = "";
+        imagenUsuario = "";
+        imagenDeUsuario.src = "./img/login-logo.svg";
+        imagenDeUsuarioComentario.src = "./img/autor.svg";
+        imagenDeUsuario.nextSibling.textContent = `ACCEDER`;
+        logout.classList.remove("logged");
+        updateTodo();
+    }
 }
 
 verificarLogin();
 
-function cerrarSesion(){
+function cerrarSesion() {
     localStorage.removeItem('usuarioLogueado');
     verificarLogin();
 }
 
+//Precarga de imagenes para una mejor optimización
 async function preloadImages(imageUrls) {
     const container = document.getElementById('preloaded-images');
 
@@ -86,15 +95,15 @@ preloadImages(imagesToPreload);
 let lastScrollTop = 0;
 const header = document.getElementById('nav-menu');
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     if (currentScrollTop > lastScrollTop) {
-        header.style.top = "-75px"; 
+        header.style.top = "-75px";
     } else {
         header.style.top = "0";
     }
-    
+
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
 });
 
@@ -219,7 +228,7 @@ function mostrarFormularioLogin(event) {
 
         formLogin.addEventListener('submit', function (event) {
             event.preventDefault();
-            
+
             let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
             const user = usuarios.find(user => user.email === email.value && user.contraseña === contraseña.value);
             if (user) {
@@ -237,7 +246,7 @@ function mostrarFormularioLogin(event) {
 }
 
 function abrirFormRegistro(container, imglogo, title, cerra) {
-    
+
     let presuntoNombre;
     let presuntaContraseña;
     let presuntaImagen;
@@ -325,7 +334,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             arregloDeLabel[i] = document.createElement("label");
             arregloDeLabel[i].htmlFor = `checkbox${i}`;
             arregloDeLabel[i].id = `label${i}`;
-            arregloDeLabel[i].style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select${i+1}.webp?v=1")`;
+            arregloDeLabel[i].style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../img/select${i + 1}.webp?v=1")`;
             arregloDeCheckbox[i] = document.createElement("input");
             arregloDeCheckbox[i].type = `checkbox`;
             arregloDeCheckbox[i].id = `checkbox${i}`;
@@ -571,13 +580,15 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
         }
 
         function fnBienvenida() {
-            
+
             let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-            usuarios.push({usuario: presuntoNombre, contraseña: presuntaContraseña, email: presuntoEmail, avatar: presuntaImagen});
+            usuarios.push({ usuario: presuntoNombre, contraseña: presuntaContraseña, email: presuntoEmail, avatar: presuntaImagen });
             localStorage.setItem('usuarios', JSON.stringify(usuarios));
             localStorage.setItem('usuarioLogueado', JSON.stringify(usuarios[usuarios.length - 1]));
-            
-            
+            let interacciones = JSON.parse(localStorage.getItem('interact')) || [];
+            interacciones.push({ email: presuntoEmail, bookmark: false, relleno: null });
+            localStorage.setItem('interact', JSON.stringify(interacciones));
+
             textoBienvenida.textContent = `¡Bienvenid@ a BoxedCat ${presuntoNombre}!`
             contenedor.append(logo, textoBienvenida, imagenAvatar, cerrar);
 
@@ -600,13 +611,33 @@ function cerrarForm() {
     document.body.style.overflowY = "visible";
 }
 
+
+
+
+
+function actualizarBookmark(email, nuevoEstado) {
+
+    let interacciones = JSON.parse(localStorage.getItem('interact'));
+    let usuario = interacciones.find(item => item.email === email);
+
+    if (usuario) {
+        usuario.bookmark = nuevoEstado;
+    }
+
+    localStorage.setItem('interact', JSON.stringify(interacciones));
+}
+
 function cambiarBookmarkNota() {
     bookmarkNota.forEach(bookmark => {
         const child = bookmark.firstElementChild;
         if (child) {
             child.classList.toggle('active');
+
         }
     });
+    cambioBookmarkNota = !cambioBookmarkNota;
+    actualizarBookmark(correoLogueado, cambioBookmarkNota);
+
 }
 
 bookmarkNota.forEach(bookmark => {
@@ -649,7 +680,7 @@ function expandirTotal() {
     if (expando) {
         function ajustarMaxHeight() {
             if (expando) {
-                const height = nota.scrollHeight + 'px'; 
+                const height = nota.scrollHeight + 'px';
                 nota.style.maxHeight = height;
                 console.log('Height ajustado a:', height);
             }
@@ -660,14 +691,14 @@ function expandirTotal() {
         posicionGuardada = window.scrollY;
         const interval = setInterval(() => {
             ajustarMaxHeight();
-        }, 100); 
+        }, 100);
         document.querySelector('.ver-mas').addEventListener('click', () => {
             if (!expando) {
                 clearInterval(interval);
             }
         });
-        
-       
+
+
     } else {
         console.log(posicionGuardada)
         nota.classList.remove("active");
@@ -677,19 +708,61 @@ function expandirTotal() {
         verMasText.textContent = "Ver más";
         window.scrollTo({
             top: posicionGuardada,
-            behavior: 'smooth' // 'smooth' para un desplazamiento animado
+            behavior: 'smooth'
         });
         posicionGuardada = null;
     }
 }
 
 
-const estrellas = document.querySelectorAll('.star-rate');
-let seleccionado = false;
-let relleno;
-const numTotal = document.getElementById("numero-total");
-let numeroTotal = parseInt(numTotal.textContent);
 
+
+function updateTodo(email) {
+    if (email != null) {
+        let interact = JSON.parse(localStorage.getItem('interact'));
+        let usuario = interact.find(item => item.email === email);
+        if (usuario) {
+            bookmarkNota.forEach(bookmark => {
+                const child = bookmark.firstElementChild;
+                if (child) {
+                    if (usuario.bookmark == true) {
+                        child.classList.add('active');
+                        cambioBookmarkNota = true;
+                    } else {
+                        child.classList.remove('active');
+                        cambioBookmarkNota = false;
+                    }
+
+                }
+            });
+
+            if (usuario.relleno != null) {
+                for (let i = 0; i <= usuario.relleno; i++) {
+                    estrellas[i].style.fill = "#2CA9F0";
+                }
+
+                for (let i = usuario.relleno + 1; i < estrellas.length; i++) {
+                    estrellas[i].style.fill = "transparent";
+                }
+                numTotal.textContent = `${numeroTotal + 1}`;
+            }
+        }
+    } else {
+        bookmarkNota.forEach(bookmark => {
+            const child = bookmark.firstElementChild;
+            if (child) {
+                    child.classList.remove('active');
+                    cambioBookmarkNota = false;
+            }
+        });
+
+        for (let i = 0; i < estrellas.length; i++) {
+            estrellas[i].style.fill = "transparent";
+        }
+
+        numTotal.textContent = `${numeroTotal}`;
+    }
+}
 
 estrellas.forEach((estrella, index) => {
 
@@ -713,7 +786,7 @@ estrellas.forEach((estrella, index) => {
         for (let i = index + 1; i < estrellas.length; i++) {
             estrellas[i].style.fill = "transparent";
         }
-
+        actualizarRelleno(correoLogueado, relleno);
         numTotal.textContent = `${numeroTotal + 1}`;
     };
 
@@ -741,6 +814,18 @@ estrellas.forEach((estrella, index) => {
 
 });
 
+function actualizarRelleno(email, cantidadRelleno) {
+
+    let interacciones = JSON.parse(localStorage.getItem('interact'));
+    let usuario = interacciones.find(item => item.email === email);
+
+    if (usuario) {
+        usuario.relleno = cantidadRelleno;
+    }
+
+    localStorage.setItem('interact', JSON.stringify(interacciones));
+}
+
 
 const formComentario = document.getElementById("formComentario");
 const textarea = document.getElementById("comentario");
@@ -751,9 +836,7 @@ let comentarios = document.querySelectorAll(".comentarios-escritos > :not(:first
 function enviarComentario(event) {
     event.preventDefault();
     if (textarea.value !== "") {
-        const cantidadComentarios = document.getElementById("cantidad-comentarios");
-        let cantTotal = parseInt(cantidadComentarios.textContent);
-        cantidadComentarios.textContent = `${cantTotal + 1}`;
+
         const fechaActual = new Date();
 
         const opcionesDeFecha = {
@@ -774,31 +857,58 @@ function enviarComentario(event) {
         const hora = partes.find(p => p.type === 'hour').value + ':' +
             partes.find(p => p.type === 'minute').value;
 
-        const comentarioIndividual = document.createElement("div");
-        comentarioIndividual.classList.add("comentario-individual");
-        const imagenPerfil = document.createElement("img");
-        imagenPerfil.src = imagenUsuario;
-        imagenPerfil.alt = "Profile Photo";
-        imagenPerfil.classList.add("profile-photo")
-        const nombreYFecha = document.createElement("div");
-        const nombre = document.createElement("h3");
-        nombre.textContent = `${nombreUsuario}`;
-        const fechap = document.createElement("p");
-        fechap.textContent = `${fecha} ${hora}`;
-        const comentarioEscrito = document.createElement("p");
-        comentarioEscrito.textContent = `${textarea.value}`;
-        nombreYFecha.append(nombre, fechap);
-        comentarioIndividual.append(imagenPerfil, nombreYFecha, comentarioEscrito);
-        divComentarios.insertBefore(comentarioIndividual, divComentarios.firstChild);
-        comentarios = document.querySelectorAll(".comentarios-escritos > :not(:first-child)");
-        if (mostrameMas == false) {
-            comentarios.forEach(comentario => {
-                comentario.style.display = 'none';
-            });
-        }
+        let logged = JSON.parse(localStorage.getItem('usuarioLogueado'));
+        let comentariosTotal = JSON.parse(localStorage.getItem('comentarios')) || [];
+        let nuevoComentario = { email: logged.email, avatar: imagenUsuario, nombre: nombreUsuario, fecha: fecha, hora: hora, texto: textarea.value };
+        comentariosTotal.push(nuevoComentario);
+        localStorage.setItem('comentarios', JSON.stringify(comentariosTotal));
+
+        renderComentario(nuevoComentario);
+
         textarea.value = "";
     }
 };
+
+function updateComentario() {
+    let comentariosTotal = JSON.parse(localStorage.getItem('comentarios')) || [];
+    comentariosTotal.forEach(comments => renderComentario(comments));
+
+    
+}
+
+function renderComentario(comments) {
+    const cantidadComentarios = document.getElementById("cantidad-comentarios");
+    let totalComentarios = JSON.parse(localStorage.getItem('comentarios')).length;
+    cantidadComentarios.textContent = `${3 + totalComentarios}`;
+
+    const comentarioIndividual = document.createElement("div");
+    comentarioIndividual.classList.add("comentario-individual");
+    const imagenPerfil = document.createElement("img");
+    imagenPerfil.src = comments.avatar;
+    imagenPerfil.alt = "Profile Photo";
+    imagenPerfil.classList.add("profile-photo");
+
+    const nombre = document.createElement("h3");
+    nombre.textContent = `${comments.nombre}`;
+    const fechap = document.createElement("p");
+    fechap.textContent = `${comments.fecha} ${comments.hora}`;
+    const comentarioEscrito = document.createElement("p");
+    comentarioEscrito.textContent = `${comments.texto}`;
+    const nombreYFecha = document.createElement("div");
+
+    nombreYFecha.append(nombre, fechap);
+    comentarioIndividual.append(imagenPerfil, nombreYFecha, comentarioEscrito);
+    divComentarios.insertBefore(comentarioIndividual, divComentarios.firstChild);
+
+    comentarios = document.querySelectorAll(".comentarios-escritos > :not(:first-child)");
+    if (mostrameMas == false) {
+        comentarios.forEach(comentario => {
+            comentario.style.display = 'none';
+        });
+    }
+}
+
+updateComentario();
 
 formComentario.addEventListener("submit", manejadorLogin(enviarComentario));
 
@@ -866,7 +976,7 @@ function adjustScale() {
     if (viewportHeight < 800) {
         scaleValue = viewportHeight / 800;
     }
-    
+
     var element = document.getElementById('login-container');
     if (element) {
         element.style.transform = 'scale(' + scaleValue + ')';
@@ -875,9 +985,16 @@ function adjustScale() {
 
 window.onresize = adjustScale;
 
-function cerrarVentanaMobile(){
+//Funcion para cerrar la ventana mobile
+function cerrarVentanaMobile() {
     const ventanaMobile = document.getElementById("ventana-mobile");
     ventanaMobile.remove();
     document.body.style.overflowY = "visible";
     document.documentElement.style.overflow = "visible";
 }
+
+// localStorage usados:
+//  localStorage.removeItem('usuarios');
+//  localStorage.removeItem('usuarioLogueado');
+//  localStorage.removeItem('comentarios');
+//  localStorage.removeItem('interact');
