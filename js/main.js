@@ -718,7 +718,8 @@ function expandirTotal() {
 
 
 function updateTodo(email) {
-    if (email != null) {
+    console.log(email)
+    if (email !== undefined) {
         let interact = JSON.parse(localStorage.getItem('interact'));
         let usuario = interact.find(item => item.email === email);
         if (usuario) {
