@@ -3,6 +3,39 @@ let imagenUsuario = "";
 const bookmarkNota = document.querySelectorAll('.bookmark-nota');
 const divLogin = document.getElementById("login-popup");
 
+//  localStorage.removeItem('usuarios');
+//  localStorage.removeItem('usuarioLogueado');
+
+
+function verificarLogin(){
+    let logged = JSON.parse(localStorage.getItem('usuarioLogueado'));
+    const imagenDeUsuario = document.getElementById("login-logo");
+    const imagenDeUsuarioComentario = document.getElementById("profile-photo");
+    const logout = document.querySelector(".div-login-btn");
+if(logged !== null){
+    nombreUsuario = logged.usuario;
+    imagenUsuario = logged.avatar;
+    imagenDeUsuario.src = imagenUsuario;
+    imagenDeUsuarioComentario.src = imagenUsuario;
+    imagenDeUsuario.nextSibling.textContent = `${nombreUsuario}`;
+    
+    logout.classList.add("logged");
+} else {
+    nombreUsuario = "";
+    imagenUsuario = "";
+    imagenDeUsuario.src = "./img/login-logo.svg";
+    imagenDeUsuarioComentario.src = "./img/autor.svg";
+    imagenDeUsuario.nextSibling.textContent = `ACCEDER`;
+    logout.classList.remove("logged");
+}
+}
+
+verificarLogin();
+
+function cerrarSesion(){
+    localStorage.removeItem('usuarioLogueado');
+    verificarLogin();
+}
 
 async function preloadImages(imageUrls) {
     const container = document.getElementById('preloaded-images');
@@ -75,7 +108,8 @@ const expresiones = {
 function manejadorLogin(funcion) {
     return function (event) {
         event.preventDefault();
-        if (nombreUsuario == "") {
+        let logged = JSON.parse(localStorage.getItem('usuarioLogueado'));
+        if (logged === null) {
             mostrarFormularioLogin(event);
         } else {
             if (funcion != null) {
@@ -185,14 +219,29 @@ function mostrarFormularioLogin(event) {
 
         formLogin.addEventListener('submit', function (event) {
             event.preventDefault();
-            textoError.textContent = "*Email o contraseña invalido";
+            
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const user = usuarios.find(user => user.email === email.value && user.contraseña === contraseña.value);
+            if (user) {
+                localStorage.setItem('usuarioLogueado', JSON.stringify(user));
+                console.log("inicio sesion");
+                verificarLogin();
+                cerrarForm();
+                console.log(user);
+            } else {
+                textoError.textContent = "*Email o contraseña invalido";
+            }
         });
     }
     adjustScale();
 }
 
 function abrirFormRegistro(container, imglogo, title, cerra) {
-    let presuntoUsuario;
+    
+    let presuntoNombre;
+    let presuntaContraseña;
+    let presuntaImagen;
+    let presuntoEmail;
     const contenedor = container;
     const logo = imglogo;
     const titulo = title;
@@ -331,9 +380,6 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             });
         });
 
-        const imagenDeUsuario = document.getElementById("login-logo");
-        const imagenDeUsuarioComentario = document.getElementById("profile-photo");
-
         const textoBienvenida = document.createElement("h2");
 
         const imagenAvatar = document.createElement("img");
@@ -368,6 +414,8 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
                 nombreTrue = true;
             }
 
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
             if (email.value == "") {
                 textoErrorEmail.textContent = "*Este campo no puede estar vacio";
                 textoErrorEmail.classList.add("active");
@@ -378,6 +426,10 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
                 textoErrorEmail.classList.add("active");
                 email.classList.add("error");
                 emailTrue = false;
+            } else if (usuarios.some(mail => mail.email === email.value)) {
+                textoErrorEmail.textContent = '*Este Email ya esta registrado';
+                textoErrorEmail.classList.add("active");
+                email.classList.add("error");
             } else {
                 textoErrorEmail.textContent = "";
                 textoErrorEmail.classList.remove("active");
@@ -415,7 +467,9 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             }
 
             if (contraseñaTrue && emailTrue && nombreTrue && confirmarTrue) {
-                presuntoUsuario = nombre.value;
+                presuntoNombre = nombre.value;
+                presuntaContraseña = contraseña.value;
+                presuntoEmail = email.value;
                 irAForm2();
 
             }
@@ -466,7 +520,9 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
 
             back2.addEventListener("click", () => {
                 contenedor.innerHTML = "";
-                presuntoUsuario = "";
+                presuntoNombre = "";
+                presuntaContraseña = "";
+                presuntoEmail = "";
                 titulo.textContent = "Registrate para saber de BoxedCat";
                 contenedor.append(logo, titulo, cerrar, back, formRegistro1);
             });
@@ -505,8 +561,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
                 });
 
                 if (selectedValue !== null) {
-                    imagenUsuario = avatar[selectedValue];
-                    nombreUsuario = presuntoUsuario;
+                    presuntaImagen = avatar[selectedValue];
                     contenedor.innerHTML = "";
                     fnBienvenida();
                 } else {
@@ -516,16 +571,19 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
         }
 
         function fnBienvenida() {
-
-            imagenDeUsuario.src = imagenUsuario;
-            imagenDeUsuarioComentario.src = imagenUsuario;
-            imagenDeUsuario.nextSibling.textContent = `${nombreUsuario}`;
-            textoBienvenida.textContent = `¡Bienvenid@ a BoxedCat ${nombreUsuario}!`
+            
+            let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            usuarios.push({usuario: presuntoNombre, contraseña: presuntaContraseña, email: presuntoEmail, avatar: presuntaImagen});
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            localStorage.setItem('usuarioLogueado', JSON.stringify(usuarios[usuarios.length - 1]));
+            
+            
+            textoBienvenida.textContent = `¡Bienvenid@ a BoxedCat ${presuntoNombre}!`
             contenedor.append(logo, textoBienvenida, imagenAvatar, cerrar);
 
-            imagenAvatar.src = imagenUsuario;
+            imagenAvatar.src = presuntaImagen;
             imagenAvatar.className = "imagen-bienvenida";
-
+            verificarLogin();
         }
 
         back.addEventListener("click", (event) => {

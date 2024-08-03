@@ -32,7 +32,6 @@ header {
     width: 100%;
     z-index: 2;
     transition: top 0.3s;
-    overflow: hidden;
 }
 
 .logo-header {
@@ -42,7 +41,7 @@ header {
 .header-cont {
     max-width: 1280px;
     margin: auto;
-    padding: 10px 25px;
+    padding: 0 0 0 25px;
     display: flex;
     align-items: center;
     gap: 70px;
@@ -82,6 +81,15 @@ header ul a:hover {
     gap: 50px;
 }
 
+.div-login-btn{
+    position: relative; 
+    display: flex;
+}
+
+.div-login-btn.logged:hover #cerrar-sesion{
+    display: block;
+}
+
 #login-btn {
     display: flex;
     gap: 10px;
@@ -89,6 +97,9 @@ header ul a:hover {
     text-decoration: none;
     font-size: 1.1em;
     color: white;
+    min-width: 155px;
+    height: 70px;
+    padding-right: 25px;
 }
 
 #login-logo {
@@ -100,9 +111,31 @@ header ul a:hover {
     color: var(--accent-color);
 }
 
+#cerrar-sesion{
+    position: absolute;
+    color: white;
+    z-index: 2;
+    top: 70px;
+    right: 0;
+    background-color: var(--button-color);
+    padding: 25px 35px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    width: 175px;
+    display: none;
+}
+
+#cerrar-sesion:hover{
+    
+    background-color: #c24939;
+   
+}
+
 .container {
     max-width: 1280px;
     margin: auto;
+    position: relative;
 }
 
 
@@ -1440,7 +1473,23 @@ footer> :last-child {
     }
 }
 
+@media only screen and (max-width: 690px) {
+header{
+    overflow: hidden;
+}
+.nota{
+    overflow: hidden;
+}
+.margen{
+    overflow: hidden;
+}
 
+
+.row{
+    overflow: hidden;
+}
+
+}
 
 @media only screen and (max-width: 800px) {
     #ventana-mobile {
@@ -1495,6 +1544,7 @@ footer> :last-child {
         background-color: transparent;
         border: 3px solid var(--accent-color);
     }
+
 
     body {
         overflow-y: hidden;
