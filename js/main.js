@@ -109,7 +109,7 @@ window.addEventListener('scroll', function () {
 
 const expresiones = {
     nombres: /^[a-zA-ZÀ-ÿ\s]{1,20}$/,
-    password: /^(?=.*[A-Za-z0-9])[A-Za-z0-9!@#$%^&*()_+]{4,12}$/,
+    password: /^(?=.*[A-Za-z0-9])[A-Za-z0-9!@#$%^&*()_+]{4,16}$/,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 }
 
@@ -301,9 +301,9 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
 
         const terminosYCondiciones = document.createElement("p");
         terminosYCondiciones.className = "terminos-y-condiciones";
-        terminosYCondiciones.innerHTML = "Al continuar, indicas que aceptas las <a>Condiciones de servicio</a> y la <a>Politica de privacidad</a> de BoxedCat";
+        terminosYCondiciones.innerHTML = "Al continuar, estás aceptando los <a>Términos y condiciones</a> y las <a>Políticas de privacidad</a> de BoxedCat";
         const registrarseBtn = document.createElement("button");
-        registrarseBtn.textContent = "REGISTRARSE";
+        registrarseBtn.textContent = "CONTINUAR";
         registrarseBtn.className = "iniciar-sesion-button";
 
         const back = document.createElement("img");
@@ -342,12 +342,12 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             divCheckbox.append(arregloDeCheckbox[i], arregloDeLabel[i]);
         }
 
-        arregloDeLabel[0].textContent = `FILOSFIA`;
-        arregloDeLabel[1].textContent = `FISICA`;
+        arregloDeLabel[0].textContent = `FILOSFÍA`;
+        arregloDeLabel[1].textContent = `FÍSICA`;
         arregloDeLabel[2].textContent = `LO HUMANO`;
         arregloDeLabel[3].textContent = `SALUD`;
         arregloDeLabel[4].textContent = `SOCIEDAD`;
-        arregloDeLabel[5].textContent = `BIOLOGIA`;
+        arregloDeLabel[5].textContent = `BIOLOGÍA`;
 
 
         const back3 = document.createElement("img");
@@ -364,7 +364,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
 
         const btnRadio = document.createElement("button");
         btnRadio.className = "btn-radio";
-        btnRadio.textContent = "Finalizar registro";
+        btnRadio.textContent = "FINALIZAR REGISTRO";
         for (let i = 0; i < 4; i++) {
             arregloDeLabelRadio[i] = document.createElement("label");
             arregloDeLabelRadio[i].htmlFor = `radio${i}`;
@@ -407,12 +407,12 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             let confirmarTrue = false;
             let contraseñaTrue = false;
             if (nombre.value == "") {
-                textoErrorName.textContent = "*Este campo no puede estar vacio";
+                textoErrorName.textContent = "*Este campo no puede estar vacío";
                 textoErrorName.classList.add("active");
                 nombre.classList.add("error");
                 nombreTrue = false;
             } else if (!expresiones.nombres.test(nombre.value)) {
-                textoErrorName.textContent = "*Estas usando caracteres invalidos para este campo";
+                textoErrorName.textContent = "*Estas usando caracteres inválidos para este campo";
                 textoErrorName.classList.add("active");
                 nombre.classList.add("error");
                 nombreTrue = false;
@@ -426,7 +426,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
             if (email.value == "") {
-                textoErrorEmail.textContent = "*Este campo no puede estar vacio";
+                textoErrorEmail.textContent = "*Este campo no puede estar vacío";
                 textoErrorEmail.classList.add("active");
                 email.classList.add("error");
                 emailTrue = false;
@@ -436,7 +436,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
                 email.classList.add("error");
                 emailTrue = false;
             } else if (usuarios.some(mail => mail.email === email.value)) {
-                textoErrorEmail.textContent = '*Este Email ya esta registrado';
+                textoErrorEmail.textContent = '*Este Email ya está registrado';
                 textoErrorEmail.classList.add("active");
                 email.classList.add("error");
             } else {
@@ -447,12 +447,12 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
             }
 
             if (contraseña.value == "") {
-                textoErrorContraseña.textContent = "*Este campo no puede estar vacio";
+                textoErrorContraseña.textContent = "*Este campo no puede estar vacío";
                 textoErrorContraseña.classList.add("active");
                 contraseña.classList.add("error");
                 contraseñaTrue = false;
             } else if (!expresiones.password.test(contraseña.value)) {
-                textoErrorContraseña.textContent = 'Tiene que tener entre 4 y 12 caracteres';
+                textoErrorContraseña.textContent = 'Tiene que tener entre 4 y 16 caracteres';
                 textoErrorContraseña.classList.add("active");
                 contraseña.classList.add("error");
                 contraseñaTrue = false;
@@ -488,7 +488,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
         function irAForm2() {
             formRegistro1.remove();
             back.remove();
-            titulo.innerHTML = "!Queremos saber más de vos!<br>¿Qué te interesa?"
+            titulo.innerHTML = "¡Queremos saber más de vos!<br>¿Qué te interesa?"
 
 
 
@@ -504,7 +504,7 @@ function abrirFormRegistro(container, imglogo, title, cerra) {
 
                     switch (true) {
                         case (count >= 3):
-                            btnCheckbox.textContent = "Hecho";
+                            btnCheckbox.textContent = "CONTINUAR";
                             break;
                         case (count == 2):
                             btnCheckbox.textContent = "Elegí 1 más";
@@ -962,7 +962,7 @@ function mostrarMas() {
         btnMostrarMas.textContent = "Mostrar más";
         window.scrollTo({
             top: posicionGuardada,
-            behavior: 'smooth' // 'smooth' para un desplazamiento animado
+            behavior: 'smooth'
         });
         posicionGuardada = null;
     }
@@ -971,14 +971,14 @@ function mostrarMas() {
 
 
 function adjustScale() {
-    var viewportHeight = window.innerHeight;
-    var scaleValue = 1;
+    let viewportHeight = window.innerHeight;
+    let scaleValue = 1;
 
     if (viewportHeight < 800) {
         scaleValue = viewportHeight / 800;
     }
 
-    var element = document.getElementById('login-container');
+    let element = document.getElementById('login-container');
     if (element) {
         element.style.transform = 'scale(' + scaleValue + ')';
     }

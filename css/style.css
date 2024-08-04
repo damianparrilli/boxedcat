@@ -14,10 +14,6 @@
     background-repeat: no-repeat;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     overflow-x: hidden;
     visibility: hidden;
@@ -36,6 +32,7 @@ header {
 
 .logo-header {
     width: 36px;
+    cursor: pointer;
 }
 
 .header-cont {
@@ -88,6 +85,11 @@ header ul a:hover {
 
 .div-login-btn.logged:hover #cerrar-sesion{
     display: block;
+}
+
+img{
+        user-drag: none;
+        -webkit-user-drag: none;
 }
 
 #login-btn {
@@ -256,6 +258,8 @@ header ul a:hover {
     display: flex;
     align-items: center;
     gap: 5px;
+    text-decoration: none;
+    color: black;
 }
 
 .views-rate :nth-child(2)::before {
@@ -269,8 +273,9 @@ header ul a:hover {
     overflow: hidden;
     max-height: 600px;
     position: relative;
-    transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.5s;
     overflow: hidden;
+    transition-duration: 0.5s;
 }
 
 .contenido-nota.active {
@@ -712,6 +717,7 @@ header ul a:hover {
     margin: 0 calc(clamp(0.938em, -10.446em + 24.286vw, 6.25em) + 50px);
     display: flex;
     flex-direction: column;
+    transition-duration: 0.5s;
 }
 
 .comentarios-escritos {
